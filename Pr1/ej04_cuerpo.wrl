@@ -1,0 +1,99 @@
+#VRML V2.0 utf8
+
+#Cuerpo
+DEF bola Shape {
+	appearance Appearance {
+		material Material {
+			diffuseColor 1 1 1
+		}
+	}
+	geometry Sphere	{
+		radius 1.0
+	}
+}
+#Cabeza
+Transform {
+	scale 0.5 0.5 0.5
+	translation	0.0 1.25 0.0
+	children USE bola
+}
+#Nariz
+Transform {
+	scale 0.5 0.5 0.5
+	rotation 1 0 0 1.57		 
+	translation	0.0 1.25 0.5  
+	children [
+		Shape {
+			appearance Appearance {
+				material Material {
+					diffuseColor 1 0 0
+				}
+			}
+			geometry Cone {
+				height 1
+				bottomRadius 0.25
+			}
+		}
+	]
+}
+#Ojo 1
+Transform {
+	translation	0.2 1.35 0.5
+	children DEF ojo Shape {
+		appearance Appearance {
+			material Material {
+				diffuseColor 0 0 0
+			}
+		}
+		geometry Sphere	{
+			radius 0.05
+		}
+	}
+}
+#Ojo 2
+Transform {
+	translation	-0.2 1.35 0.5
+	children USE ojo
+}
+
+#Botones
+Transform {
+	translation	0 0 1
+	children [
+		Transform {
+			translation	0 0.6 -0.21
+			children Shape {
+				appearance Appearance {
+					material Material {
+						diffuseColor 1 1 0
+					}
+				}
+				geometry DEF boton Sphere {
+					radius 0.05
+				}
+			}
+		},
+		Transform {
+			translation	0 0.3 -0.05
+			children Shape {
+				appearance Appearance {
+					material Material {
+						diffuseColor 0 1 1
+					}
+				}
+				geometry USE boton
+			}
+		},
+		Transform {
+			translation	0 0.0 0.0
+			children Shape {
+				appearance Appearance {
+					material Material {
+						diffuseColor 1 0 1
+					}
+				}
+				geometry USE boton
+			}
+		}
+	]
+}

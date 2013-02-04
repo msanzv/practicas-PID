@@ -1,0 +1,35 @@
+#VRML V2.0 utf8
+
+#Escoba
+Group {
+	children [
+		#Palo
+		Shape {
+			appearance Appearance {
+				material Material {
+					diffuseColor 1 0.5 0.2
+				}
+			}
+			geometry Cylinder {
+				height 4
+				radius 0.1
+			}
+		},
+		#Punta
+		Transform {
+			translation	0 -2 0
+			children
+				Shape {
+					appearance Appearance {
+						material Material {
+							diffuseColor 1 1 0
+						}
+					}
+					geometry Cone {
+						height 1
+						bottomRadius 0.5
+					}
+				}
+		}
+	]
+}

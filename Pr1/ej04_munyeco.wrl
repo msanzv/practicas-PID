@@ -1,0 +1,34 @@
+#VRML V2.0 utf8
+
+
+#Cuerpo
+Inline {
+	url	"ej04_cuerpo.wrl"
+	bboxCenter 0 0 0
+	bboxSize -1 -1 -1
+}
+
+#Escoba
+Transform {
+	scale 0.5 0.5 0.5
+	rotation 0 0 1 2.5
+	translation	0.7 0 0
+	children
+		Inline {
+			url	"ej04_escoba.wrl"
+			bboxCenter 0 0 0
+			bboxSize -1 -1 -1
+		}
+}
+
+#Sombrero
+Transform {
+	scale 0.8 0.8 0.8 
+	translation	0 1.55 0
+	children
+		Inline {
+			url	"ej04_sombrero.wrl"
+			bboxCenter 0 0 0
+			bboxSize -1 -1 -1
+		}
+}

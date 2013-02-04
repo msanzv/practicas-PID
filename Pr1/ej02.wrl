@@ -1,0 +1,62 @@
+#VRML V2.0 utf8
+
+Group {
+	children [
+		Transform {
+			translation	0.0 1.25 0.0
+			children [
+				Shape {
+					appearance Appearance {
+						material Material {
+							diffuseColor 1 1 1
+						}
+					}
+					geometry Box {
+						size 5.0 2.5 0.5
+					}
+				},
+				Transform {
+					translation	0.0 0.0 0.27
+					children [
+						Shape {
+							appearance Appearance {
+								material Material {
+									diffuseColor 0 0 1
+								}
+							}
+							geometry Text {
+								string ["Curso de", "VRML 2.0"]	
+								fontStyle FontStyle	{ 
+									justify	"MIDDLE"
+									size 0.5
+								}
+							}
+						}
+					]
+				}
+			]
+		},
+		Transform {
+			translation	-2.5 0.0 0.0
+			children [
+				DEF	poste Shape	{
+					appearance Appearance {
+						material Material {
+							diffuseColor 0.4 0.4 0.4
+						}
+					}
+					geometry Cylinder {
+						height 5.0
+						radius 0.1
+					}
+				}
+			]
+		},
+		Transform {
+			translation	2.5 0.0 0.0
+			children [
+				USE	poste 
+			]
+		}
+	]
+}

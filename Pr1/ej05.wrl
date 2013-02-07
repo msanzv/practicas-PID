@@ -14,7 +14,7 @@ DEF	nivel Group	{
 							Transform {			 
 								translation	-3.5 0 0
 								children Inline	{
-									url	"../VRML/cursoVRML/piezas/columna.wrl"
+									url	"../../VRML/cursoVRML/piezas/columna.wrl"
 									bboxCenter 0 0 0
 									bboxSize -1 -1 -1
 								}
@@ -24,7 +24,7 @@ DEF	nivel Group	{
 								scale 1 1 0.7
 								translation	0 4 0
 								children Inline	{
-									url	"../VRML/cursoVRML/piezas/arco.wrl"
+									url	"../../VRML/cursoVRML/piezas/arco.wrl"
 									bboxCenter 0 0 0
 									bboxSize -1 -1 -1
 								}

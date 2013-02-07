@@ -1,0 +1,39 @@
+#VRML V2.0 utf8
+
+DEF	estrella Group {
+	children [
+		DEF Marco Shape {
+			appearance Appearance {
+				material Material {
+					diffuseColor 1 1 0
+				}
+			}
+			geometry Extrusion {
+				beginCap TRUE
+				endCap TRUE
+				ccw TRUE
+				convex TRUE
+				solid TRUE
+				creaseAngle 0
+				crossSection [-0.05 0.05, 0.05 0.05, 0.05 -0.05, -0.05 -0.05, -0.05 0.05] 
+				spine [
+					-1.0  0.0 -1.0, 
+					-1.0  0.0  1.0, 
+					 1.0  0.0  1.0, 
+					 1.0  0.0 -1.0, 
+					-1.0  0.0 -1.0]
+				orientation 0 0 1 0
+				scale 1 1
+			}
+		}
+		Transform {
+			rotation 0 1 0 0.785
+			children USE Marco
+		}
+	]
+}
+Transform {
+	scale 0.75 1 0.75 
+	rotation 0 1 0 0.39
+	children USE estrella
+}

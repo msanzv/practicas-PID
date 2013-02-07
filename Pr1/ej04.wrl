@@ -3,7 +3,7 @@
 
 #Cartel
 Anchor {
-	url	"../VRML/cursoVRML/toc.htm"
+	url	"../../VRML/cursoVRML/toc.htm"
 	description	"Entra al Curso de VRML 2.0!"
 	children Transform {
 			scale 0.6 0.6 0.6

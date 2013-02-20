@@ -1,0 +1,48 @@
+#VRML V2.0 utf8
+
+DEF	tierra Inline {
+	url	"ej05.wrl"
+}
+DEF	agua Transform {
+	translation	2.5 -1 2.5
+	children Shape {
+		appearance Appearance {
+			material Material {
+				diffuseColor 0 0.5 1
+			}
+		}
+		geometry Box {
+			size 25 0.3 25
+		}
+	}
+}
+DEF	isla Transform {
+	translation	12.5 -1 7
+	children [
+		Shape {
+			appearance Appearance {
+				material Material {
+					diffuseColor 0 1 0
+				}
+			}
+			geometry Cylinder {
+				height 0.5
+				radius 1.5
+			}
+		},
+		Transform {
+			translation	0 1 0
+			children Inline { url "ej01.wrl" }
+		}
+	]
+}
+
+
+
+Transform {
+	rotation 1 0 0 -0.3
+	children Viewpoint {
+		position 0 4 30
+		description	"Principal"
+	}
+}

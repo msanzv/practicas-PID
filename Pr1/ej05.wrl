@@ -1,70 +1,138 @@
 #VRML V2.0 utf8
 
 
-DEF	nivel Group	{
+#Definicion de las piezas
+																	
+
+
+DEF	terreno Group {
 	children [
-		DEF medionivel Group {
+		DEF suelo Transform {
+			translation	0 -1 0
 			children [
-				Transform {
-					translation	0 0 3.5
-					children DEF octavo Transform {
-						scale 0.4 0.4 0.4  
-						children [
-							#Columna
-							Transform {			 
-								translation	-3.5 0 0
-								children Inline	{
-									url	"../../VRML/cursoVRML/piezas/columna.wrl"
-									bboxCenter 0 0 0
-									bboxSize -1 -1 -1
-								}
-							}
-							#Arco
-							Transform {
-								scale 1 1 0.7
-								translation	0 4 0
-								children Inline	{
-									url	"../../VRML/cursoVRML/piezas/arco.wrl"
-									bboxCenter 0 0 0
-									bboxSize -1 -1 -1
-								}
-							}
-						]
+				Shape {
+					appearance Appearance {
+						material Material {
+							diffuseColor 0 .7 0
+						}
 					}
-				}
-				Transform {			   
-					rotation 0 1 0 0.785
-					children Transform {
-						translation	0 0 3.5	 
-						children USE octavo
-					}
-				}
-				Transform {			   
-					rotation 0 1 0 1.57
-					children Transform {
-						translation	0 0 3.5	 
-						children USE octavo
-					}
-				}
-				Transform {			   
-					rotation 0 1 0 2.355
-					children Transform {
-						translation	0 0 3.5	 
-						children USE octavo
+					geometry Box {
+						size 20 .5 20
 					}
 				}
 			]
 		}
+	]
+}
+
+
+DEF	torre Group	{
+	children [
+		DEF	nivel Group	{
+			children [
+				DEF medionivel Group {
+					children [
+						Transform {
+							translation	0 0 3.5
+							children DEF octavo Transform {
+								scale 0.4 0.4 0.4  
+								children [
+									#Columna
+									Transform {			 
+										translation	-3.5 0 0
+										children DEF columna Inline	{ 
+											url	"../../VRML/cursoVRML/piezas/columna.wrl" 
+										}
+									}
+									#Arco
+									Transform {
+										scale 1 1 0.7
+										translation	0 4 0
+										children DEF arco Inline { 
+											url	"../../VRML/cursoVRML/piezas/arco.wrl" 
+										}
+									}
+								]
+							}
+						}
+						Transform {			   
+							rotation 0 1 0 0.785
+							children Transform {
+								translation	0 0 3.5	 
+								children USE octavo
+							}
+						}
+						Transform {			   
+							rotation 0 1 0 1.57
+							children Transform {
+								translation	0 0 3.5	 
+								children USE octavo
+							}
+						}
+						Transform {			   
+							rotation 0 1 0 2.355
+							children Transform {
+								translation	0 0 3.5	 
+								children USE octavo
+							}
+						}
+					]
+				}
+				Transform {
+					rotation 0 1 0 3.14
+					children USE medionivel
+				}
+			]
+		}
 		Transform {
-			rotation 0 1 0 3.14
-			children USE medionivel
+			scale 0.95 0.95 0.95
+			rotation 0 1 0 0.392
+			translation	0 3.12 0
+			children USE nivel
+		},
+		DEF	techo Group	{
+			children [
+				DEF	dosvigas Transform	{
+					translation	0 5.5 0
+					children [ 
+						DEF viga Transform {
+							scale 0.4 0.4 0.4  
+							children [
+								#Rectangulo
+								Transform {	
+									scale 3.2 .3 1 
+									translation	0 0 0
+									children DEF rectangulo Inline	{ 
+										url	"../../VRML/cursoVRML/piezas/rectangulo.wrl" 
+									}
+								}
+								#Triangulo
+								Transform {
+									scale 5.5 1 1.5
+									translation	0 1.9 0
+									children DEF triangulo Inline { 
+										url	"../../VRML/cursoVRML/piezas/triangulo.wrl" 
+									}
+								}
+							]
+						}
+						Transform {
+							rotation 0 1 0 1.57
+							children USE viga
+						}
+					]
+				}
+				Transform {
+					rotation 0 1 0 0.785
+					children USE dosvigas
+				}
+			]
 		}
 	]
 }
-Transform {
-	scale 0.95 0.95 0.95
-	rotation 0 1 0 0.392
-	translation	0 3.12 0
-	children USE nivel
-}
   
+
+#Viewpoint {
+#	position 0 3 15
+#	description	"Principal"
+#}

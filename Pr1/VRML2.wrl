@@ -1,0 +1,204 @@
+#VRML V2.0 utf8
+
+#------------------------
+# Suelo
+#------------------------
+DEF	suelo2x1 Group	{
+	children [
+		Transform {
+			translation	-2 0 0
+			children DEF suelo1x1 Inline {
+				url	"ej10.wrl"
+			}
+		},		   
+		Transform {
+			translation	2 0 0
+			children USE suelo1x1
+		}
+	]
+}
+Transform {
+	translation	0 0 -4
+	children USE suelo2x1
+}
+Transform {
+	translation	0 0 4
+	children USE suelo2x1
+}
+Transform {
+	translation	0 0 8
+	children USE suelo2x1
+}
+
+#------------------------
+# Butacas
+#------------------------
+Transform {
+	translation	0 0 2.5
+	children [
+		DEF	FilaButacas Group {
+			children [
+				Transform {
+					translation	-2.25 0 0
+					children DEF TresButacas Group {	 
+						children [
+							DEF	Butaca Transform {
+								scale .3 .3 .3
+								rotation 0 1 0 1.57
+								translation	0 -1.6 0
+								children LOD {
+									range [ 15, 30 ]
+									level [
+										Inline { url "vrml2_butacahigh.wrl" }
+										Inline { url "vrml2_butacamed.wrl" }
+										Inline { url "vrml2_butacalow.wrl" }
+									]
+								}
+							}
+							Transform {
+								translation	0.9 0 0
+								children USE Butaca
+							}
+							Transform {
+								translation	-0.9 0 0
+								children USE Butaca
+							}
+						]
+					}
+				},
+				Transform {
+					translation	2.25 0 0
+					children USE TresButacas
+				}
+			]
+		}
+		Transform {
+			translation	0 0 1.5
+			children USE FilaButacas
+		}
+		Transform {
+			translation	0 0 -1.5
+			children USE FilaButacas
+		}
+		Transform {
+			translation	0 0 3
+			children USE FilaButacas
+		}
+		Transform {
+			translation	0 0 -3
+			children USE FilaButacas
+		}
+		Transform {
+			translation	0 0 4.5
+			children USE FilaButacas
+		}
+		Transform {
+			translation	0 0 -4.5
+			children USE FilaButacas
+		}
+	]
+}
+
+#------------------------
+# Paredes
+#------------------------
+Transform {
+	translation	0 1 0
+	children Shape {
+		appearance Appearance {
+			material Material {
+				diffuseColor .5 .5 .5
+			}
+		}
+		geometry Extrusion {
+			beginCap TRUE
+			endCap TRUE
+			ccw TRUE
+			convex TRUE
+			solid TRUE
+			creaseAngle 0
+			crossSection [-0.05  3, 
+						   0.05  3, 
+						   0.05 -3, 
+						  -0.05 -3, 
+						  -0.05  3] 
+			spine [
+				-4  0 -6, 
+				-4  0 10, 
+				 4  0 10, 
+				 4  0 -6, 
+				-4  0 -6]
+			orientation 0 0 1 0
+			scale 1 1
+		}
+	}
+}
+
+#------------------------------
+# Pantalla
+#------------------------------	
+Transform {
+	translation	0 1.8 -5.9
+	children Shape {
+		geometry Box {
+			size 6 3.5 0.2
+		}
+		appearance Appearance {
+			texture MovieTexture {
+				url "monstruo.mpg"
+				speed 1
+				loop TRUE
+				startTime 1 
+				stopTime 0 
+				repeatS TRUE 
+				repeatT TRUE 
+    		}
+		}
+	}
+} 
+
+#------------------------------
+# Lámparas
+#------------------------------
+Transform {
+	translation	-3.7 0 0				
+	children DEF FilaLamparas Group {
+		children [
+			DEF Lampara Transform {
+				scale .3 .3 .3
+				rotation 1 0 0 0.785
+				rotation 0 0 1 0.785 
+				translation	0 2.5 0
+				children Inline	{
+					url	"ej07.wrl"
+				}
+			}
+			Transform {
+				translation	0 0 4
+				children USE Lampara
+			}
+			Transform {
+				translation	0 0 -4
+				children USE Lampara
+			}
+		]
+	}
+}
+Transform {
+	translation 3.7 0 0
+	children USE FilaLamparas
+}
+
+#------------------------------
+# Puntos de vista
+#------------------------------	
+Viewpoint {
+    position    0 0 9
+    orientation 0 0 1 0
+    description "CamInicial"
+}
+Viewpoint {
+    position    5 8 12
+    orientation -1 1 0 0.8
+    description "CamInicial2"
+}

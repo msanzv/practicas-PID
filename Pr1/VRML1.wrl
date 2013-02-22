@@ -37,12 +37,25 @@ DEF	isla Transform {
 	]
 }
 
+DEF	escalera Transform {
+	translation	-1.55 1 -4
+	children Inline	{ url "ej03.wrl" }
+}
+Transform {
+	rotation 0 1 0 1.57
+	children USE escalera
+}
+Transform {
+	rotation 0 1 0 -1.57
+	children USE escalera
+}
+
 
 
 Transform {
 	rotation 1 0 0 -0.3
 	children Viewpoint {
-		position 0 4 30
+		position 2.5 4 30
 		description	"Principal"
 	}
 }

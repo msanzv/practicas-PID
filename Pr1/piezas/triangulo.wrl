@@ -1,0 +1,37 @@
+#VRML V2.0 utf8
+Transform {
+    translation -4.0 -2.68 0.2
+    scale 0.05 0.05 0.054
+    children [
+        Shape {
+           appearance Appearance {
+              material Material {
+                        diffuseColor 0.196078 0.800000 0.196078
+              }
+           }
+           geometry  IndexedFaceSet {
+               coord Coordinate {
+                   point [
+                                80.371304 83.456347 6.215715,
+                                40.371308 23.456347 6.215635,
+                                120.371303 23.456347 6.215632,
+                                80.371304 83.456378 -15.046069,
+                                120.371303 23.456375 -15.046156,
+                                40.371308 23.456375 -15.046152
+                   ]
+                }
+                solid FALSE
+                coordIndex [
+                                2, 1, 0, -1,
+                                2, 0, 3, -1,
+                                2, 3, 4, -1,
+                                0, 1, 5, -1,
+                                0, 5, 3, -1,
+                                1, 2, 4, -1,
+                                1, 4, 5, -1,
+                                3, 5, 4, -1
+                ]
+            }
+       }
+    ]
+}

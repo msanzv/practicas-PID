@@ -3,37 +3,41 @@
 #------------------------
 # Suelo
 #------------------------
-DEF	suelo2x1 Group	{
+DEF	suelo Group	{
 	children [
+		DEF	suelo2x1 Group	{
+			children [
+				Transform {
+					translation	-2 0 0
+					children DEF suelo1x1 Inline {
+						url	"ej10.wrl"
+					}
+				},		   
+				Transform {
+					translation	2 0 0
+					children USE suelo1x1
+				}
+			]
+		}
 		Transform {
-			translation	-2 0 0
-			children DEF suelo1x1 Inline {
-				url	"ej10.wrl"
-			}
-		},		   
+			translation	0 0 -4
+			children USE suelo2x1
+		}
 		Transform {
-			translation	2 0 0
-			children USE suelo1x1
+			translation	0 0 4
+			children USE suelo2x1
+		}
+		Transform {
+			translation	0 0 8
+			children USE suelo2x1
 		}
 	]
-}
-Transform {
-	translation	0 0 -4
-	children USE suelo2x1
-}
-Transform {
-	translation	0 0 4
-	children USE suelo2x1
-}
-Transform {
-	translation	0 0 8
-	children USE suelo2x1
 }
 
 #------------------------
 # Butacas
 #------------------------
-Transform {
+DEF butacas Transform {
 	translation	0 0 2.5
 	children [
 		DEF	FilaButacas Group {
@@ -102,12 +106,20 @@ Transform {
 #------------------------
 # Paredes
 #------------------------
-Transform {
+DEF paredes Transform {
 	translation	0 1 0
 	children Shape {
 		appearance Appearance {
 			material Material {
-				diffuseColor .5 .5 .5
+				#diffuseColor .5 .5 .5
+			}
+			texture	ImageTexture {
+				url	"RIPPLE.JPG"
+				repeatS	TRUE
+				repeatT	TRUE
+			}
+			textureTransform TextureTransform {
+				scale 10 40
 			}
 		}
 		geometry Extrusion {
@@ -137,7 +149,7 @@ Transform {
 #------------------------------
 # Pantalla
 #------------------------------	
-Transform {
+DEF pantalla Transform {
 	translation	0 1.8 -5.9
 	children Shape {
 		geometry Box {
@@ -160,33 +172,37 @@ Transform {
 #------------------------------
 # Lámparas
 #------------------------------
-Transform {
-	translation	-3.7 0 0				
-	children DEF FilaLamparas Group {
-		children [
-			DEF Lampara Transform {
-				scale .3 .3 .3
-				rotation 1 0 0 0.785
-				rotation 0 0 1 0.785 
-				translation	0 2.5 0
-				children Inline	{
-					url	"ej07.wrl"
-				}
+DEF	lamparas Group {
+	children [
+		Transform {
+			translation	-3.7 0 0				
+			children DEF FilaLamparas Group {
+				children [
+					DEF Lampara Transform {
+						scale .3 .3 .3
+						rotation 1 0 0 0.785
+						rotation 0 0 1 0.785 
+						translation	0 2.5 0
+						children Inline	{
+							url	"ej07.wrl"
+						}
+					}
+					Transform {
+						translation	0 0 4
+						children USE Lampara
+					}
+					Transform {
+						translation	0 0 -4
+						children USE Lampara
+					}
+				]
 			}
-			Transform {
-				translation	0 0 4
-				children USE Lampara
-			}
-			Transform {
-				translation	0 0 -4
-				children USE Lampara
-			}
-		]
-	}
-}
-Transform {
-	translation 3.7 0 0
-	children USE FilaLamparas
+		}
+		Transform {
+			translation 3.7 0 0
+			children USE FilaLamparas
+		}
+	]
 }
 
 #------------------------------

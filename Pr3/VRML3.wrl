@@ -47,7 +47,14 @@ DEF	Cuerpo Group {
 							rotation 1 0 0 1.57
 							translation	1.15 0 0
 							children Shape {
-								appearance USE metal
+								appearance DEF metal_dark Appearance {
+									material Material {
+										diffuseColor .15 .15 .15
+										specularColor .92 .91 .89
+										ambientIntensity 0
+										shininess .06
+									}
+								}
 								geometry Cylinder {
 									radius 0.15
 									height 0.3
@@ -78,46 +85,179 @@ DEF	Cuerpo Group {
 #------------------------------
 # Patas
 #------------------------------
-DEF	patas Transform	{
-	children [
-		DEF	pata Transform {	
-			rotation 0 0 1 -0.785 	
+DEF	tres_patas Group {
+	children [ 
+		DEF pata Transform	{	 	
 			translation	1.15 0 0
 			children [
-				DEF rot1 Transform {
-					rotation 1 0 0 1.57
-					children CylinderSensor {
-						maxAngle 1.57
-						minAngle 0
-					}
-				}
-				DEF	pieza1 Transform {	
+				DEF	pata1 Transform {	
+					rotation 1 0 0 1.57 
 					children [
-						DEF barra Transform {
-							translation	0 .5 0
-							children [
-								Shape {
-									appearance USE metal
-									geometry Cylinder {
-										radius 0.08
-										height 1
+						DEF rot1 CylinderSensor {
+							maxAngle 1.57
+							minAngle 0
+						}
+						DEF	pieza1 Transform {	
+							center 0 0 0	
+							rotation 0 1 0 0.6	# Rotacion inicial
+							children Transform {	
+								rotation 0 0 1 -1.57 
+								children [
+									DEF barra Transform {
+										translation	0 .5 0
+										children [
+											Shape {
+												appearance USE metal
+												geometry Cylinder {
+													radius 0.08
+													height 1
+												}
+											}
+										]
+									},
+									DEF	tubo Transform {
+										translation	0 0.48 0
+										children Shape {
+											appearance USE metal
+											geometry Cylinder {
+												radius 0.15
+												height 0.6
+											}
+										}
+									},
+									DEF	pata2 Transform {
+										rotation 0 0 1 -1.57
+										children [
+											DEF	rot2 CylinderSensor	{
+												maxAngle 1.57
+												minAngle 0
+											}
+											DEF	pieza2 Transform {
+												center -1 0 0
+												rotation 0 1 0 1.4	 # Rotacion inicial
+												children [
+													Transform {
+														translation	-1.5 0 0
+														rotation 0 0 1 1.57
+														children [
+															DEF rotula Transform {
+																translation	0 -0.5 0
+																children Shape {
+																	appearance USE metal_dark
+																	geometry Sphere	{ 
+																		radius .2 
+																	}
+																}
+															},
+															DEF tapa Transform {			
+																children Shape {
+																	appearance USE metal
+																	geometry Sphere { 
+																		radius .35 
+																	}
+																}
+															},
+															DEF deposito Transform {
+																translation	0 0.75 0
+																children Shape {
+																	appearance USE metal
+																	geometry Cylinder {
+																		radius .345
+																		height 1.5
+																	}
+																}
+															},
+															DEF tapa2 Transform {
+																translation	0 1.5 0
+																children USE tapa
+															},
+															DEF	pata3 Transform	{
+																rotation 0 0 1 1.57
+																children [
+																	DEF	rot3 CylinderSensor	{
+																		maxAngle .785
+																		minAngle -.785
+																	}
+																	DEF	pieza3 Transform {
+																		center 2 0 0
+																		rotation 0 1 0 -0.75     # Rotacion inicial
+																		children [
+																			Transform {
+																				translation	2 0 0
+																				rotation 0 0 1 3.14
+																				children [
+																					DEF rotula2 Transform {
+																						translation	0 0 0
+																						children Shape {
+																							appearance USE metal_dark
+																							geometry Sphere	{
+																								radius .2
+																							}
+																						}
+																					},
+																					DEF	tobillo Transform {
+																						rotation 0 0 1 1.57
+																						translation	-0.3 0 0
+																						children Shape {
+																							appearance USE metal
+																							geometry Cylinder {
+																								radius .08
+																								height 0.6
+																							}
+																						}
+																					},
+																					DEF	peana Transform	{
+																						rotation 0 0 1 1.57
+																						translation	-0.6 0 0
+																						children Shape {
+																							appearance USE metal_dark
+																							geometry Cylinder {
+																								radius .5
+																								height .1
+																							}
+																						}
+																					}
+																				]
+																			}
+																		]
+																	}
+																]
+															}
+														]
+													}
+												]
+											}
+										]
 									}
-								}
-							]
-						},
-						DEF	caja Transform {
-							translation	0 0.5 0
-							children Shape {
-								appearance USE metal
-								geometry Box {
-									size 0.3 0.6 0.3
-								}
+								]
 							}
 						}
-					]
+					]											  
 				}
 			]
-			ROUTE rot1.rotation_changed	TO pieza1.rotation
+		}, 
+		Transform {	 
+			rotation 0 1 0 0.785
+			children Transform {
+				translation	1.15 0 0
+				children USE pata1
+			}
+		}, 
+		Transform {	 
+			rotation 0 1 0 -0.785
+			children Transform {
+				translation	1.15 0 0
+				children USE pata1
+			}
 		}
 	]
 }
+Transform {
+	rotation 0 1 0 3.14
+	children USE tres_patas
+}
+
+# Rutas
+ROUTE rot1.rotation_changed	TO pieza1.rotation
+ROUTE rot2.rotation_changed	TO pieza2.rotation
+ROUTE rot3.rotation_changed	TO pieza3.rotation

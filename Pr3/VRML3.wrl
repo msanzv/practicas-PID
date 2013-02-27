@@ -1,0 +1,123 @@
+#VRML V2.0 utf8
+
+
+#------------------------------
+# Escenario
+#------------------------------
+DEF	Escenario Inline { url "ej11.wrl" }
+
+
+
+#------------------------------
+# Cuerpo
+#------------------------------
+DEF	Cuerpo Group {
+	children [
+		Shape {
+			appearance DEF metal Appearance {
+				material Material {
+					diffuseColor .57 .58 .58
+					specularColor .67 .46 .44
+					ambientIntensity .137
+					shininess .17
+				}
+			}
+			geometry Sphere	{
+				radius 1
+			}
+		},
+		DEF	TresCaderas Group {
+			children [
+				DEF	cadera Group {
+					children [
+						DEF	eje Transform {
+							rotation 0 0 1 1.57
+							translation	1 0 0
+							children [
+					    		Shape {
+									appearance USE metal
+									geometry Cylinder {
+										radius 0.08
+										height 0.5
+									}
+								}
+							]
+						}
+						DEF	bisagra Transform {
+							rotation 1 0 0 1.57
+							translation	1.15 0 0
+							children Shape {
+								appearance USE metal
+								geometry Cylinder {
+									radius 0.15
+									height 0.3
+								}
+							}
+						}
+					]
+				}
+				Transform {
+					rotation 0 1 0 0.785
+					children USE cadera	
+				}
+				Transform {
+					rotation 0 1 0 -0.785
+					children USE cadera
+				}
+			]
+		}
+		Transform {
+			rotation 0 1 0 3.14
+			children USE TresCaderas
+		}
+
+	]
+}
+
+
+#------------------------------
+# Patas
+#------------------------------
+DEF	patas Transform	{
+	children [
+		DEF	pata Transform {	
+			rotation 0 0 1 -0.785 	
+			translation	1.15 0 0
+			children [
+				DEF rot1 Transform {
+					rotation 1 0 0 1.57
+					children CylinderSensor {
+						maxAngle 1.57
+						minAngle 0
+					}
+				}
+				DEF	pieza1 Transform {	
+					children [
+						DEF barra Transform {
+							translation	0 .5 0
+							children [
+								Shape {
+									appearance USE metal
+									geometry Cylinder {
+										radius 0.08
+										height 1
+									}
+								}
+							]
+						},
+						DEF	caja Transform {
+							translation	0 0.5 0
+							children Shape {
+								appearance USE metal
+								geometry Box {
+									size 0.3 0.6 0.3
+								}
+							}
+						}
+					]
+				}
+			]
+			ROUTE rot1.rotation_changed	TO pieza1.rotation
+		}
+	]
+}

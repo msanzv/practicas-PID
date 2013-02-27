@@ -189,7 +189,7 @@ NavigationInfo {
     headlight   TRUE
     speed       1.0
 	visibilityLimit 0.0
-    type        "WALK"
+    type        ["WALK","FLY","EXAMINE"]
 }
 
 WorldInfo {

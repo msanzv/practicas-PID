@@ -1,0 +1,198 @@
+#VRML V2.0 utf8
+
+#------------------------------
+# Suelo
+#------------------------------
+Transform {
+	translation	-12 -2 -12
+	children [
+		Shape {
+			appearance Appearance {
+				material Material {	
+					diffuseColor 1 1 1
+					specularColor 1 1 1
+				}
+			}		
+			geometry ElevationGrid {
+    			xDimension 9
+    			xSpacing 3
+    			zDimension 9
+    			zSpacing 3
+    			height [
+        			0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,	0.0,
+        			0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+        			0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 
+        			0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 
+        			0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 
+        			0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 
+        			0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 
+        			0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0
+        			0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0
+    			]
+				colorPerVertex FALSE
+    			color Color {
+					color [
+						0 0 0, 1 1 1, 0 0 0, 1 1 1, 0 0 0, 1 1 1, 0 0 0, 1 1 1,
+						1 1 1, 0 0 0, 1 1 1, 0 0 0, 1 1 1, 0 0 0, 1 1 1, 0 0 0, 
+						0 0 0, 1 1 1, 0 0 0, 1 1 1, 0 0 0, 1 1 1, 0 0 0, 1 1 1,
+						1 1 1, 0 0 0, 1 1 1, 0 0 0, 1 1 1, 0 0 0, 1 1 1, 0 0 0,
+						0 0 0, 1 1 1, 0 0 0, 1 1 1, 0 0 0, 1 1 1, 0 0 0, 1 1 1,
+						1 1 1, 0 0 0, 1 1 1, 0 0 0, 1 1 1, 0 0 0, 1 1 1, 0 0 0,
+						0 0 0, 1 1 1, 0 0 0, 1 1 1, 0 0 0, 1 1 1, 0 0 0, 1 1 1, 
+						1 1 1, 0 0 0, 1 1 1, 0 0 0, 1 1 1, 0 0 0, 1 1 1, 0 0 0
+					]  
+				}  
+			}
+		}
+	]
+}
+
+#------------------------------
+# Pared
+#------------------------------
+Transform {
+	translation	0 0 -12
+	children Shape {
+		appearance Appearance {
+			material Material { }
+			texture ImageTexture {
+				url "../../VRML/Libro/Texturas/BRICKFLM.JPG"
+				repeatS TRUE
+				repeatT TRUE
+			}
+			textureTransform TextureTransform {
+		    	scale 3.0 1.0
+			}
+		}
+		geometry Box {
+			size 24, 4, 0.1
+		}
+	}
+}
+
+#------------------------------
+# Antorchas
+#------------------------------
+Transform {
+	translation	0 0 -11.7
+	children [ 
+		DEF Antorcha LOD {
+			range [ 18, 24 ]
+			level [
+				Inline { url "../../VRML/cursoVRML/torchigh.wrl"}
+				Inline { url "../../VRML/cursoVRML/torchmed.wrl"}
+				Inline { url "../../VRML/cursoVRML/torchlow.wrl"}
+			]
+		}
+	]
+}
+Transform {
+	translation	-10 0 -11.7
+	children [ 
+		USE Antorcha   
+	]
+}
+Transform {
+	translation	 10 0 -11.7
+	children [
+		USE Antorcha	 
+	]
+}
+
+#------------------------------
+# Luces de antorchas
+#------------------------------
+DEF LuzAntorcha Transform {
+	translation	0 1 -11.5
+	children SpotLight {					
+		on TRUE
+		intensity 0.9
+		ambientIntensity 0.2
+		color 1 .7 0
+		location 0 0 0		
+    	direction 0 -3 0
+    	beamWidth 0.785
+    	cutOffAngle 0.785
+    	radius 8.0
+    	attenuation 1 0 0
+	}
+}
+Transform {
+	translation	-10 0 0
+	children [ 
+		USE LuzAntorcha   
+	]
+}
+Transform {
+	translation	 10 0 0
+	children [
+		USE LuzAntorcha	 
+	]
+}
+
+
+#------------------------------
+# Fondo degradado
+#------------------------------
+Background {
+    groundColor [ .14 .28 0, .09 .11 0 ]
+    groundAngle [ 1.57 ] #[ .785 ]
+    skyColor    [ 1 1 1, 0 0 .25] #[ .02 0 .26, .02 0 .65 ]
+    skyAngle    [ 1.57 ] #[ .785 ]
+}
+
+#------------------------------
+# Luz puntual blanca
+#------------------------------
+PointLight {
+	on TRUE
+	intensity 0.7
+	ambientIntensity 0.0
+	color 1 1 1
+	location 0 0 0
+	radius 10		 
+}
+
+#------------------------------
+# Niebla gris
+#------------------------------
+Fog {
+    color .5 .5 .5
+    visibilityRange 40
+    fogType "LINEAR"
+}
+
+
+#------------------------------
+# Puntos de vista
+#------------------------------
+Viewpoint {
+    position    0 0 10
+    orientation 0 0 1 0
+    description "Lejos"
+}
+								
+Transform {
+	rotation 0 1 0 -0.7
+	children Viewpoint {
+    	position    -3 0 4
+    	orientation 0 0 1 0
+    	description "Cerca"
+	}
+}	  
+
+#------------------------------
+# Informacion
+#------------------------------
+NavigationInfo {
+    avatarSize  [0.25, 1.6, 0.75]
+    headlight   TRUE
+    speed       1.0
+	visibilityLimit 0.0
+    type        ["WALK","FLY","EXAMINE"]
+}
+
+WorldInfo {
+    title   "Mundo Pr2"
+    info    ["Mario Sanz","PID 2013"]
+}

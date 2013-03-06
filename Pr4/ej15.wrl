@@ -4,7 +4,7 @@
 #------------------------------
 # Escenario
 #------------------------------
-DEF	Escenario Inline { url "ej11.wrl" }
+DEF	Escenario Inline { url "ej15_mundo.wrl" }
 
 
 
@@ -80,6 +80,13 @@ DEF	Cuerpo Group {
 							scale 2 2 1   
 							translation	0.2 -0.2 -0.25
 							children USE canon2
+						}
+						DEF	bala Transform {
+							translation	-0.3 0 1
+							children Shape {
+								appearance USE metal2
+								geometry Sphere	{ radius 0.045 }
+							}
 						}
 					]
 				}
@@ -330,3 +337,52 @@ Transform {
 ROUTE rot1.rotation_changed	TO pieza1.rotation
 ROUTE rot2.rotation_changed	TO pieza2.rotation
 ROUTE rot3.rotation_changed	TO pieza3.rotation
+
+
+
+
+#------------------------------
+# Animaciones
+#------------------------------
+
+DEF	pata1_sensor TimeSensor	{
+	startTime 0
+	stopTime 0
+	loop TRUE
+	cycleInterval 1.5
+}
+
+DEF	pata1_p1_inter OrientationInterpolator	{
+	key	[0 0.25 0.5 0.75 1]
+	keyValue [0 1 0 1, 0 1 0 .5, 0 1 0 0, 0 1 0 .5, 0 1 0 1]
+}
+ROUTE pata1_sensor.fraction_changed TO pata1_p1_inter.set_fraction
+ROUTE pata1_p1_inter.value_changed	TO pieza1.rotation
+
+DEF	pata1_p2_inter OrientationInterpolator	{
+	key	[0 0.25 0.5 0.75 1]
+	keyValue [0 1 0 1, 0 1 0 .5, 0 1 0 0, 0 1 0 .5, 0 1 0 1]
+}
+ROUTE pata1_sensor.fraction_changed TO pata1_p2_inter.set_fraction
+ROUTE pata1_p2_inter.value_changed	TO pieza2.rotation
+
+DEF	pata1_p3_inter OrientationInterpolator	{
+	key	[0 0.25 0.5 0.75 1]
+	keyValue [0 1 0 -0.7, 0 1 0 -0.35, 0 1 0 0, 0 1 0 -0.35, 0 1 0 -0.7]
+}
+ROUTE pata1_sensor.fraction_changed TO pata1_p3_inter.set_fraction
+ROUTE pata1_p3_inter.value_changed	TO pieza3.rotation
+
+
+DEF	bala_sensor TimeSensor {
+	startTime 0
+	stopTime 0
+	loop TRUE
+	cycleInterval 3
+}
+DEF	bala_inter PositionInterpolator {
+	key	[0 1]
+	keyValue [-0.3 0 1, -0.3 0 50]
+}
+ROUTE bala_sensor.fraction_changed TO bala_inter.set_fraction
+ROUTE bala_inter.value_changed TO bala.translation

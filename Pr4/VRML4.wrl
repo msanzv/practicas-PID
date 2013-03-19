@@ -1,0 +1,430 @@
+#VRML V2.0 utf8
+
+#------------------------------
+# Escenario
+#------------------------------
+DEF	Escenario Inline { url "mundo.wrl" }
+
+
+PROTO JumpingRobot [
+	field MFString name "Paco"
+] {	
+	DEF	Robot Transform	{
+		rotation 0 1 0 0
+		translation	0 0 0
+		children [
+			#------------------------------
+			# Cuerpo
+			#------------------------------
+			DEF	Cuerpo Group {
+				children [
+					DEF cabina Group {
+						children [
+							DEF cabeza Shape {
+								appearance DEF metal Appearance {
+									material Material {
+										diffuseColor .57 .58 .58
+										specularColor .67 .46 .44
+										ambientIntensity .137
+										shininess .17
+									}
+								}
+								geometry Sphere	{
+									radius 1
+								}
+							}
+							DEF armas1 Group {
+								children [
+									DEF	canon Transform {
+										rotation 1 0 0 1.57
+										translation	0.3 0.1 1
+										children Shape {
+											appearance USE metal
+											geometry Cylinder {
+												radius 0.05
+												height 0.5
+											}
+										}
+									},
+									Transform {	   
+										translation	0.2 0.1 -0.1
+										children USE canon
+									},
+									Transform {	
+										scale 1.5 1.5 1   
+										translation	-0.1 0.2 -0.25
+										children USE canon
+									}
+								]
+							}
+							DEF	armas2 Group {
+								children [
+									DEF	canon2 Transform {
+										rotation 1 0 0 1.57
+										translation	-0.3 0 1
+										children Shape {		
+											geometry Cylinder {
+												radius 0.05
+												height 0.5
+											}
+											appearance DEF metal2 Appearance {
+												material Material {
+													diffuseColor .15 .15 .15
+													specularColor .92 .91 .89
+													ambientIntensity 0
+													shininess .06
+												}
+											}
+										}
+									},
+									Transform {	   
+										translation	0.1 -0.25 -0.1
+										children USE canon2
+									},
+									Transform {	
+										scale 2 2 1   
+										translation	0.2 -0.2 -0.25
+										children USE canon2
+									}
+									DEF	bala Transform {
+										translation	-0.3 0 1
+										children Shape {
+											appearance USE metal2
+											geometry Sphere	{ radius 0.045 }
+										}
+									}
+								]
+							}
+						]
+					}
+					DEF	TresCaderas Group {
+						children [
+							DEF	cadera Group {
+								children [
+									DEF	eje Transform {
+										rotation 0 0 1 1.57
+										translation	1 0 0
+										children [
+					    					Shape {
+												appearance USE metal
+												geometry Cylinder {
+													radius 0.08
+													height 0.5
+												}
+											}
+										]
+									}
+									DEF	bisagra Transform {
+										rotation 1 0 0 1.57
+										translation	1.15 0 0
+										children Shape {
+											appearance DEF metal_dark Appearance {
+												material Material {
+													diffuseColor .15 .15 .15
+													specularColor .92 .91 .89
+													ambientIntensity 0
+													shininess .06
+												}
+											}
+											geometry Cylinder {
+												radius 0.15
+												height 0.3
+											}
+										}
+									}
+								]
+							}
+							Transform {
+								rotation 0 1 0 0.785
+								children USE cadera	
+							}
+							Transform {
+								rotation 0 1 0 -0.785
+								children USE cadera
+							}
+						]
+					}
+					Transform {
+						rotation 0 1 0 3.14
+						children USE TresCaderas
+					}
+
+				]
+			}
+
+
+			#------------------------------
+			# Patas
+			#------------------------------
+			DEF	tres_patas Group {
+				children [ 
+					DEF pata Transform	{	 	
+						translation	1.15 0 0
+						children [
+							DEF	pata1 Transform {	
+								rotation 1 0 0 1.57 
+								children [
+									DEF rot1 CylinderSensor {
+										maxAngle 1.2
+										minAngle 0
+									}
+									DEF	pieza1 Transform {	
+										center 0 0 0	   
+										# Aqui iba la rot inicial mala
+										children Transform {	
+											rotation 0 0 1 -1.57
+											children Transform {
+												rotation 1 0 0 -0.5		# Rotacion inicial
+												children [
+													DEF barra Transform { 
+														translation	0 .5 0
+														children [
+															Shape {
+																appearance USE metal
+																geometry Cylinder {
+																	radius 0.08
+																	height 1
+																}
+															}
+														]
+													},
+													DEF	tubo Transform {
+														translation	0 0.48 0
+														children Shape {
+															appearance USE metal
+															geometry Cylinder {
+																radius 0.15
+																height 0.6
+															}
+														}
+													},
+													DEF	pata2 Transform {
+														rotation 0 0 1 -1.57
+														children [
+															DEF	rot2 CylinderSensor	{
+																maxAngle 0.785
+																minAngle -0.785
+															}
+															DEF	pieza2 Transform {
+																center -1 0 0
+																#rotation 0 1 0 1.4	 # Rotacion inicial	mala
+																children [
+																	Transform {
+																		translation	-1.5 0 0
+																		rotation 0 0 1 1.57
+																		children Transform {
+																			rotation 1 0 0 1.3	   # Rotacion inicial
+																			translation	0 -0.32 0.5 
+																			children [
+																				DEF rotula Transform {
+																					translation	0 -0.5 0
+																					children Shape {
+																						appearance USE metal_dark
+																						geometry Sphere	{ 
+																							radius .2 
+																						}
+																					}
+																				},
+																				DEF tapa Transform {			
+																					children Shape {
+																						appearance USE metal
+																						geometry Sphere { 
+																							radius .35 
+																						}
+																					}
+																				},
+																				DEF deposito Transform {
+																					translation	0 0.75 0
+																					children Shape {
+																						appearance USE metal
+																						geometry Cylinder {
+																							radius .345
+																							height 1.5
+																						}
+																					}
+																				},
+																				DEF tapa2 Transform {
+																					translation	0 1.5 0
+																					children USE tapa
+																				},
+																				DEF	pata3 Transform	{
+																					rotation 0 0 1 1.57
+																					children [
+																						DEF	rot3 CylinderSensor	{
+																							maxAngle 1.185
+																							minAngle -.785
+																						}
+																						DEF	pieza3 Transform {
+																							center 2 0 0
+																							#rotation 0 1 0 -0.75     # Rotacion inicial mala
+																							children [
+																								Transform {
+																									translation	2 0 0
+																									rotation 0 0 1 3.14
+																									children Transform {
+																										rotation 0 1 0 0.72	  #Rotacion inicial
+																										children [
+																											DEF rotula2 Transform {
+																												translation	0 0 0
+																												children Shape {
+																													appearance USE metal_dark
+																													geometry Sphere	{
+																														radius .2
+																													}
+																												}
+																											},
+																											DEF	tobillo Transform {
+																												rotation 0 0 1 1.57
+																												translation	-0.3 0 0
+																												children Shape {
+																													appearance USE metal
+																													geometry Cylinder {
+																														radius .08
+																														height 0.6
+																													}
+																												}
+																											},
+																											DEF	peana Transform	{
+																												rotation 0 0 1 1.57
+																												translation	-0.6 0 0
+																												children Shape {
+																													appearance USE metal_dark
+																													geometry Cylinder {
+																														radius .5
+																														height .1
+																													}
+																												}
+																											}
+																										]
+																									}
+																								}
+																							]
+																						}
+																					]
+																				}
+																			]
+																		}
+																	}
+																]
+															}
+														]
+													}
+												]
+											}
+										}
+									}
+								]											  
+							}
+						]
+					}, 
+					Transform {	 
+						rotation 0 1 0 0.785
+						children Transform {
+							translation	1.15 0 0
+							children USE pata1
+						}
+					}, 
+					Transform {	 
+						rotation 0 1 0 -0.785
+						children Transform {
+							translation	1.15 0 0
+							children USE pata1
+						}
+					}
+				]
+			}
+			Transform {
+				rotation 0 1 0 3.14
+				children USE tres_patas
+			}
+		]
+	}
+	# Rutas
+	ROUTE rot1.rotation_changed	TO pieza1.rotation
+	ROUTE rot2.rotation_changed	TO pieza2.rotation
+	ROUTE rot3.rotation_changed	TO pieza3.rotation 
+
+
+	#------------------------------
+	# Animacion bala (interpolador)
+	#------------------------------	
+	DEF	bala_sensor TimeSensor {	
+		startTime 0
+		stopTime 0
+		loop TRUE
+		cycleInterval 3
+	}
+	DEF	bala_inter PositionInterpolator {
+		key	[0 1]
+		keyValue [-0.3 0 1, -0.3 0 50]
+	}
+	ROUTE bala_sensor.fraction_changed TO bala_inter.set_fraction
+	ROUTE bala_inter.value_changed TO bala.translation
+
+
+
+	#------------------------------
+	# Movimiento del robot (script)
+	#------------------------------
+	DEF mover_sensor TimeSensor { 
+		cycleInterval 16.0
+		loop TRUE
+		startTime 1.0
+		stopTime  0.0
+	}
+	DEF Mover Script {
+		field SFFloat cycles 8
+		field SFFloat rot 0
+		eventIn SFFloat set_fraction
+		eventOut SFVec3f position_changed
+		eventOut SFRotation pieza1_changed
+		eventOut SFRotation pieza2_changed
+		eventOut SFRotation pieza3_changed
+		eventOut SFRotation rotation_changed
+		url "javascript:
+			function set_fraction( f, tm ) {
+				var prev_rot = position_changed[2];
+				position_changed[0] = 0;
+				position_changed[1] = 0.48 + 1.5 * Math.sin( ((f*360)*cycles)/180.0 * 3.1415927 );
+				position_changed[2] = 8 * Math.cos( ((f*360)*cycles/8)/180.0 * 3.1415927 );
+				pieza1_changed[0] = 0;
+				pieza1_changed[1] = 1;
+				pieza1_changed[2] = 0;
+				pieza1_changed[3] = -0.5 * Math.sin( ((f*360)*cycles)/180.0 * 3.1415927 ); 
+				pieza2_changed[0] = 0;
+				pieza2_changed[1] = 1;
+				pieza2_changed[2] = 0;
+				pieza2_changed[3] = -0.2 * Math.sin( ((f*360)*cycles)/180.0 * 3.1415927 ); 
+				pieza3_changed[0] = 0;
+				pieza3_changed[1] = 1;
+				pieza3_changed[2] = 0;
+				pieza3_changed[3] = 0.4 * Math.sin( ((f*360)*cycles)/180.0 * 3.1415927 );   
+				rotation_changed[0] = 0;
+				rotation_changed[1] = 1;
+				rotation_changed[2] = 0;  
+				if(position_changed[2] > prev_rot){ rot = 0; }	 //Va hacia adelante
+				if(position_changed[2] < prev_rot){ rot = 3.14; } //Va hacia atrás
+				rotation_changed[3] = rot;
+
+			}"
+	}
+	ROUTE mover_sensor.fraction_changed TO Mover.set_fraction
+	ROUTE Mover.position_changed TO Robot.set_translation
+	ROUTE Mover.pieza1_changed TO pieza1.rotation
+	ROUTE Mover.pieza2_changed TO pieza2.rotation
+	ROUTE Mover.pieza3_changed TO pieza3.rotation
+	ROUTE Mover.rotation_changed TO	Robot.rotation
+}
+
+
+DEF Robot1 Transform {
+	translation	5 0 0
+	children JumpingRobot { }
+}
+
+
+DEF Robot2 Transform {
+	translation	-5 0 0
+	children JumpingRobot { }
+}
+												 

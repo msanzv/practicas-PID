@@ -4,7 +4,7 @@
 #------------------------------
 # Escenario
 #------------------------------
-DEF	Escenario Inline { url "ej15_mundo.wrl" }
+DEF	Escenario Inline { url "mundo.wrl" }
 
 
 

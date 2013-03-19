@@ -4,7 +4,7 @@
 #------------------------------
 # Escenario
 #------------------------------
-DEF	Escenario Inline { url "ej15_mundo.wrl" }
+DEF	Escenario Inline { url "mundo.wrl" }
 
 
 DEF	Robot Transform	{
@@ -340,45 +340,13 @@ DEF	Robot Transform	{
 # Rutas
 ROUTE rot1.rotation_changed	TO pieza1.rotation
 ROUTE rot2.rotation_changed	TO pieza2.rotation
-ROUTE rot3.rotation_changed	TO pieza3.rotation
-
-
+ROUTE rot3.rotation_changed	TO pieza3.rotation 
 
 
 #------------------------------
-# Animaciones
-#------------------------------
-
-DEF	pata1_sensor TimeSensor	{
-	startTime 0
-	stopTime 0
-	loop TRUE
-	cycleInterval 1.5
-}
-
-DEF	pata1_p1_inter OrientationInterpolator	{
-	key	[0 0.25 0.5 0.75 1]
-	keyValue [0 1 0 1, 0 1 0 .5, 0 1 0 0, 0 1 0 .5, 0 1 0 1]
-}
-ROUTE pata1_sensor.fraction_changed TO pata1_p1_inter.set_fraction
-ROUTE pata1_p1_inter.value_changed	TO pieza1.rotation
-
-DEF	pata1_p2_inter OrientationInterpolator	{
-	key	[0 0.25 0.5 0.75 1]
-	keyValue [0 1 0 1, 0 1 0 .5, 0 1 0 0, 0 1 0 .5, 0 1 0 1]
-}
-ROUTE pata1_sensor.fraction_changed TO pata1_p2_inter.set_fraction
-ROUTE pata1_p2_inter.value_changed	TO pieza2.rotation
-
-DEF	pata1_p3_inter OrientationInterpolator	{
-	key	[0 0.25 0.5 0.75 1]
-	keyValue [0 1 0 -0.7, 0 1 0 -0.35, 0 1 0 0, 0 1 0 -0.35, 0 1 0 -0.7]
-}
-ROUTE pata1_sensor.fraction_changed TO pata1_p3_inter.set_fraction
-ROUTE pata1_p3_inter.value_changed	TO pieza3.rotation
-
-
-DEF	bala_sensor TimeSensor {
+# Animacion bala (interpolador)
+#------------------------------	
+DEF	bala_sensor TimeSensor {	
 	startTime 0
 	stopTime 0
 	loop TRUE
@@ -388,31 +356,83 @@ DEF	bala_inter PositionInterpolator {
 	key	[0 1]
 	keyValue [-0.3 0 1, -0.3 0 50]
 }
-#ROUTE bala_sensor.fraction_changed TO bala_inter.set_fraction
-#ROUTE bala_inter.value_changed TO bala.translation
+ROUTE bala_sensor.fraction_changed TO bala_inter.set_fraction
+ROUTE bala_inter.value_changed TO bala.translation
 
 
 
-#Movimiento mediante script
+#------------------------------
+# Movimiento del robot (script)
+#------------------------------
 DEF mover_sensor TimeSensor {
+	enabled FALSE
 	cycleInterval 16.0
 	loop TRUE
 	startTime 1.0
 	stopTime  0.0
-},
+}
 DEF Mover Script {
 	field SFFloat cycles 8
+	field SFFloat rot 0
 	eventIn SFFloat set_fraction
 	eventOut SFVec3f position_changed
+	eventOut SFRotation pieza1_changed
+	eventOut SFRotation pieza2_changed
+	eventOut SFRotation pieza3_changed
 	eventOut SFRotation rotation_changed
 	url "javascript:
 		function set_fraction( f, tm ) {
-			position_changed[2] = 8*Math.cos( ((f*360)*cycles/8)/180.0 * 3.1415927 );
-			position_changed[1] = 0.7 + Math.sin( ((f*360)*cycles)/180.0 * 3.1415927 );
+			var prev_rot = position_changed[2];
 			position_changed[0] = 0;
-			//rotation_changed = Math.cos( ((f*360)*cycles)/180.0 * 3.1415927 );
+			position_changed[1] = 0.48 + 1.5 * Math.sin( ((f*360)*cycles)/180.0 * 3.1415927 );
+			position_changed[2] = 8 * Math.cos( ((f*360)*cycles/8)/180.0 * 3.1415927 );
+			pieza1_changed[0] = 0;
+			pieza1_changed[1] = 1;
+			pieza1_changed[2] = 0;
+			pieza1_changed[3] = -0.5 * Math.sin( ((f*360)*cycles)/180.0 * 3.1415927 ); 
+			pieza2_changed[0] = 0;
+			pieza2_changed[1] = 1;
+			pieza2_changed[2] = 0;
+			pieza2_changed[3] = -0.2 * Math.sin( ((f*360)*cycles)/180.0 * 3.1415927 ); 
+			pieza3_changed[0] = 0;
+			pieza3_changed[1] = 1;
+			pieza3_changed[2] = 0;
+			pieza3_changed[3] = 0.4 * Math.sin( ((f*360)*cycles)/180.0 * 3.1415927 );   
+			rotation_changed[0] = 0;
+			rotation_changed[1] = 1;
+			rotation_changed[2] = 0;  
+			if(position_changed[2] > prev_rot){ rot = 0; }	 //Va hacia adelante
+			if(position_changed[2] < prev_rot){ rot = 3.14; } //Va hacia atrás
+			rotation_changed[3] = rot;
+
 		}"
 }
 ROUTE mover_sensor.fraction_changed TO Mover.set_fraction
 ROUTE Mover.position_changed TO Robot.set_translation
-#ROUTE Mover.rotation_changed TO	Robot.rotation
+ROUTE Mover.pieza1_changed TO pieza1.rotation
+ROUTE Mover.pieza2_changed TO pieza2.rotation
+ROUTE Mover.pieza3_changed TO pieza3.rotation
+ROUTE Mover.rotation_changed TO	Robot.rotation
+
+
+
+
+#------------------------------
+# Interruptores
+#------------------------------
+DEF MoveButton Transform {
+    translation 6 -2 0
+    children [
+        Shape {
+            appearance Appearance {
+                material Material { diffuseColor 1 0 0 }
+            }
+            geometry Cylinder { 
+				height 1
+				radius 0.5 
+			}
+        },
+        DEF MoveButtonClicked TouchSensor {}
+    ]
+}
+ROUTE MoveButtonClicked.isActive TO mover_sensor.enabled	   

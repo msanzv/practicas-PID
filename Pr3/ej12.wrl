@@ -228,14 +228,14 @@ Fog {
 #    description "Lejos"
 #}
 								
-Transform {
-	rotation 0 1 0 -0.7
-	children Viewpoint {
-    	position    -3 0 4
-    	orientation 0 0 1 0
-    	description "Cerca"
-	}
-}	  
+#Transform {
+#	rotation 0 1 0 -0.7
+#	children Viewpoint {
+#    	position    -3 0 4
+#    	orientation 0 0 1 0
+#    	description "Cerca"
+#	}
+#}	  
 
 #------------------------------
 # Informacion

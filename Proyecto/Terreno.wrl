@@ -1,0 +1,200 @@
+#VRML V2.0 utf8
+
+
+Shape {
+	appearance Appearance {
+		material Material {
+			diffuseColor 0 1 0
+		}
+	}
+	geometry ElevationGrid {
+		xDimension 30
+    	xSpacing 1
+    	zDimension 20
+    	zSpacing 1
+    	height [
+        	3.0, 2.8, 2.5, 2.3, 2.0, 1.8, 1.4, 1.0, 0.7, 0.5, 0.5, 0.5, 0.7, 0.9, 0.8, 0.7, 0.5, 0.2, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+        	3.1, 2.7, 2.5, 2.1, 2.0, 1.9, 1.7, 1.5, 1.0, 1.0, 1.0, 1.0, 1.0, 1.6, 1.4, 0.9, 0.6, 0.5, 0.2, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+        	2.8, 2.6, 2.2, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.2, 2.3, 2.0, 1.5, 1.2, 0.9, 0.2, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+        	2.6, 2.4, 2.1, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.2, 2.3, 2.1, 1.6, 1.4, 1.0, 0.5, 0.3, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+        	2.5, 2.2, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.1, 2.3, 2.0, 1.7, 1.5, 1.2, 0.6, 0.3, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+        	2.3, 2.1, 1.8, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.1, 2.2, 1.7, 1.3, 1.1, 0.7, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+        	2.0, 2.0, 1.5, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 1.5, 1.0, 0.7, 0.5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+        	1.7, 1.5, 1.4, 1.8, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 1.8, 1.5, 1.0, 0.7, 0.4, 0.2, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+        	1.1, 0.9, 1.1, 1.5, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 1.9, 1.8, 1.5, 1.3, 1.0, 0.7, 0.3, 0.1, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,-0.1,-0.3,-0.2, 0.0, 0.0,
+        	0.8, 0.7, 0.9, 1.2, 2.0, 2.0, 2.0, 1.8, 1.7, 1.6, 1.5, 1.4, 1.3, 1.2, 1.0, 1.0, 0.8, 0.3, 0.0, 0.0, 0.0, 0.0, 0.0,-0.1,-0.4,-0.5,-0.6,-0.3, 0.0, 0.0,
+        	0.4, 0.5, 0.8, 1.2, 2.0, 2.0, 2.0, 1.8, 1.5, 1.0, 1.0, 1.0, 1.0, 1.0, 0.5, 0.8, 0.8, 0.2, 0.0, 0.0, 0.0, 0.0, 0.0,-0.4,-0.7,-0.9,-0.8,-0.5, 0.0, 0.0,
+        	0.0, 0.5, 0.7, 1.0, 1.6, 1.6, 1.5, 1.5, 1.5, 0.5, 0.5, 0.8, 0.9, 0.7, 0.7, 0.5, 0.5, 0.0, 0.0,-0.2,-0.5,-0.3,-0.4,-0.7,-1.0,-1.0,-0.8,-0.2, 0.0, 0.0,
+        	0.0, 0.5, 0.7, 1.0, 1.4, 1.3, 1.3, 1.4, 0.9, 0.0, 0.3, 0.5, 0.5, 0.5, 0.5, 0.5, 0.3, 0.0,-0.3,-0.5,-0.7,-0.6,-0.8,-1.0,-1.0,-1.0,-0.6,-0.2, 0.0, 0.0,
+        	0.0, 0.4, 0.6, 0.9, 0.8, 0.8, 1.1, 1.2, 0.0, 0.0, 0.0, 0.0, 0.2, 0.5, 0.5, 0.5, 0.3, 0.0,-0.5,-1.0,-1.2,-1.2,-1.2,-1.0,-1.0,-1.0,-0.4,-0.3, 0.0, 0.0,
+        	0.0, 0.3, 0.5, 0.8, 0.6, 0.5, 1.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.3, 0.5, 0.3, 0.2, 0.0,-0.6,-1.0,-1.0,-1.0,-1.0,-1.0,-1.0,-1.0,-0.7,-0.4, 0.0, 0.0,
+        	0.0, 0.2, 0.4, 0.9, 0.4, 0.3, 1.0, 0.8, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.5, 0.5, 0.1, 0.0,-0.7,-1.0,-1.0,-1.0,-1.0,-1.0,-1.0,-1.0,-0.7,-0.3, 0.0, 0.0,
+        	0.0, 0.1, 0.3, 0.8, 0.3, 0.3, 0.8, 0.5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.4, 0.2, 0.0,-0.2,-0.5,-1.0,-1.0,-1.0,-1.0,-1.0,-1.0,-0.7,-0.4, 0.0, 0.0, 0.0,
+        	0.0, 0.0, 0.2, 0.7, 0.4, 0.8, 0.8, 0.2, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,-0.1,-0.4,-0.6,-0.5,-0.5,-0.6,-0.5,-0.3,-0.2, 0.0, 0.0, 0.0, 0.0,
+        	0.0, 0.0, 0.0, 0.8, 0.9, 0.8, 0.6, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,-0.1,-0.1,-0.2,-0.1, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+        	0.0, 0.0, 0.0, 0.5, 0.6, 0.7, 0.6, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0
+    	]
+    	color NULL  
+    	colorPerVertex TRUE  
+    	normal NULL  
+    	normalPerVertex TRUE  
+    	texCoord NULL  
+    	ccw TRUE  
+    	solid TRUE  
+    	creaseAngle 3.0 
+	}
+}
+
+#Base casa
+Transform {
+	rotation 0 1 0 0.4
+	translation	7.5 2 4.5
+	children Shape {
+		appearance Appearance {
+			material Material { diffuseColor 0.9 0.9 0.9 }
+		}
+		geometry Box {
+			size 4 3 3
+		}
+	}
+}
+
+Transform {
+	translation	4.5 0.1 15
+	children [
+		Shape {
+			appearance Appearance {
+				material Material { diffuseColor 0 1 1 }
+			}
+			geometry Box {
+				size 2.5 1 5
+			}
+		}
+	]
+}
+
+Transform {
+	translation	22 -0.75 12
+	children [
+		Shape {
+			appearance Appearance {
+				material Material { diffuseColor 0 1 1 }
+			}
+			geometry Box {
+				size 13 1 13
+			}
+		}
+		DEF Pez Transform {
+			rotation 0 1 0 0
+			children [
+				Transform {
+					translation	0 .5 0
+					rotation 1 0 0 1.57
+					children [
+						Shape {
+							appearance Appearance {
+								material Material {
+									diffuseColor 1 .5 0
+								}
+							}
+							geometry Cone {
+								bottomRadius 0.1
+								height 0.4
+							}
+						}
+					]
+				}
+			]
+		}
+	]
+}
+DEF NadarSensor TimeSensor {
+	enabled TRUE
+	cycleInterval 100.0
+	loop TRUE
+	startTime 1.0
+	stopTime  0.0
+}
+DEF	Nadar Script {
+	field SFFloat cycles 1
+	field SFInt32 cont 0
+	field SFBool positivo TRUE
+	eventOut SFInt32 cont_out
+	eventIn SFFloat set_fraction
+	eventOut SFVec3f position_changed
+	eventOut SFRotation rotation_changed
+	url "javascript:
+		function set_fraction( f, tm ) {
+//			position_changed[0] = Math.sin( ((f*360)*cycles*10)/180.0 * 3.1415927 );
+//			position_changed[1] = 0;
+//			position_changed[2] = Math.cos( ((f*360)*cycles*10)/180.0 * 3.1415927 ); 
+
+			//Recorrido aleatorio en un area de 2x2
+			var x = position_changed[0];
+			var z = position_changed[2];
+			var rot = rotation_changed[3];
+//			cont +=1;
+//			var dist = Math.floor(Math.random()*100) + 100;
+
+//			if(cont%dist == 0){
+//				var derizq = Math.floor(Math.random(2)*10);
+//				if(derizq % 2 == 0)
+//					rot += 1.57;
+//				else
+//					rot -= 1.57;
+
+//				if(rot > 4.75) rot = 0.0;
+//				else if(rot < 0) rot = 4.71;
+//				rotation_changed[3] = rot;
+//			}
+//			rotation_changed[0] = 0;
+//			rotation_changed[1] = 1;
+//			rotation_changed[2] = 0;
+//			rotation_changed[3] = rot;
+
+
+//			if(rot<0.5 || rot>6.3){		 if(z<0.95) position_changed[2] += 0.005; }
+//			else if(rot>1.5 && rot<1.6){ if(x<0.95) position_changed[0] += 0.005; }
+//			else if(rot>3.1 && rot<3.2){ if(z>-.95) position_changed[2] -= 0.005; }
+//			else if(rot>4.6 && rot<4.8){ if(x>-.95) position_changed[0] -= 0.005; }
+
+			//Perimetro de la zona del pez (temporal)
+			if(positivo == TRUE){
+				if     (x< 0.95){ x += 0.005; }
+				else if(z< 0.95){ z += 0.005; }
+			    else positivo = FALSE; 
+			}
+			else{
+				if     (x>-0.95){ x -= 0.005; }
+				else if(z>-0.95){ z -= 0.005; }
+				else positivo = TRUE;
+			}
+			position_changed[0] = x;
+			position_changed[2] = z;
+		}"
+
+}
+ROUTE NadarSensor.fraction_changed TO Nadar.set_fraction
+ROUTE Nadar.position_changed TO Pez.set_translation
+ROUTE Nadar.rotation_changed TO Pez.rotation
+
+
+Transform {
+	translation	15 0 10
+	children [
+		Shape {
+			appearance Appearance {
+				material Material { diffuseColor 1 0 0 }
+			}
+			geometry Cylinder {
+				radius 0.1
+				height 5
+			}
+		}
+	]
+}
+
+Viewpoint {
+	position 15 10 30
+	orientation	1 0 0 -.5
+}

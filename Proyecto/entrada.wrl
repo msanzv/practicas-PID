@@ -1,0 +1,68 @@
+#VRML V2.0 utf8
+
+
+
+##---------------------
+## Avatar
+##---------------------
+NavigationInfo {
+	avatarSize [0.5 1 0.5]
+	headlight TRUE
+	visibilityLimit	0.0 
+	speed 2.0
+	type "WALK"
+}
+
+##---------------------
+## Puntos de vista
+##---------------------
+Group {
+	children [
+		Viewpoint {
+			position 11 1 20
+			orientation	1 0 0 -.05
+		}
+	]
+}
+
+##---------------------
+## Fondo
+##---------------------
+
+DEF BACKGROUND Background { 
+    skyColor [ 0 0 1, .9 .9 1 ] 
+    skyAngle 1.6 
+    groundColor [ 0 0 0, 0 .5 0 ] 
+    groundAngle [ 1.50 ] 
+  } 
+
+##---------------------
+## Sol
+##---------------------
+DEF SUN PointLight { 
+	location -20 30 25
+	radius 100
+	on TRUE
+	ambientIntensity 0
+	attenuation 1 0 0
+	color 1 1 1
+	intensity 1
+}
+
+Inline {
+	url "Terreno.wrl"
+}
+
+
+
+##---------------------
+## Info
+##---------------------
+WorldInfo { 
+	title "Cabin by the lake" 
+	info [ 
+		"Copyright (c) by Mario Sanz", 
+		"masanvi5@fiv.upv.es", 
+		"Class project for Digital Image Production course (UPV, spring 2013)" 
+	] 
+}

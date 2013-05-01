@@ -1,0 +1,79 @@
+#VRML V2.0 utf8
+
+
+Group {
+	children [
+		##---------------------
+		## Paredes
+		##---------------------
+		Shape {
+			appearance Appearance {
+				material Material { 
+					diffuseColor 0.9 0.9 0.9 
+				}
+			}
+			geometry Box {
+				size 4 2 3
+			}
+		}
+		##---------------------
+		## Puerta
+		##---------------------
+		Transform {
+			translation 2 -.25 0
+			children [
+				## Hoja
+				Shape {
+					appearance Appearance {
+						material Material { diffuseColor 0.3 0.2 0.0 }
+					}
+					geometry Box {
+						size .1 1.5 1.0
+					}
+				}
+				## Pomo
+				Transform {
+					translation .1 0 .4
+					children Shape {
+						appearance Appearance {
+							material Material {  diffuseColor 1 1 1 }
+						}
+						geometry Sphere {
+							radius .05
+						}
+					}
+				}
+			]
+		}
+
+		##---------------------
+		## Techo
+		##---------------------
+		Transform {
+			scale 1.2 1.5 2
+			translation 0 1 0
+			children [
+				Shape {
+					appearance Appearance {
+						material Material { 
+							diffuseColor 0.5 0.2 0.0 
+						}
+					}
+					geometry IndexedFaceSet {
+						coord Coordinate {
+							point [-2 0 1, -2 0 -1, -2 1 0, 
+									2 0 1,  2 0 -1,  2 1 0]
+						}
+						coordIndex [ 2 1 0 -1, 		# Trasera 
+									 3 4 5 -1, 		# Frontal
+									 0 3 5 2 -1, 	# Izquierda
+									 1 2 5 4 -1, 	# Derecha
+									 0 1 4 3 		# Inferior
+									]
+					}
+				}
+			]
+		}
+
+	] 
+}

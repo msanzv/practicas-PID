@@ -1,0 +1,124 @@
+#VRML V2.0 utf8
+
+
+##---------------------
+## Definiciones
+##---------------------
+Switch {
+	whichChoice -1
+	choice [ 
+
+	]
+}
+
+
+PROTO Flor [
+	field SFColor color_centro 1 1 1
+	field SFColor color_petalos 1 1 0
+	field SFRotation rotationX 1 0 0 0
+	field SFRotation rotationY 0 1 0 0
+	] {
+		LOD {
+			center 0 0 0
+			range [ 10 ]
+			level [
+				#--- Detalle Bajo ---#
+				Transform {
+					rotation IS rotationY
+					children [
+						#--- Petalos ---#
+						Transform {	
+							rotation IS rotationX
+							translation 0 1 0 
+							children Shape {
+								appearance DEF COLOR_PETALOS Appearance {
+									material Material { 
+										diffuseColor IS color_petalos
+									}
+								}
+								geometry Cylinder {
+									radius .8
+									height 0.1
+								}
+							}
+						}
+						#--- Tallo ---#
+						DEF TALLO Shape {		
+							appearance DEF COLOR_TALLO Appearance {
+								material Material { 
+									diffuseColor 0 .8 0
+								}
+							}
+							geometry Cylinder {
+								radius .05
+								height 2
+							}
+						}
+					]
+				}
+				#--- Detalle Alto ---#
+				Transform {
+					rotation IS rotationY
+					children [
+						#--- Petalos ---#
+						Transform {	
+							rotation IS rotationX
+							translation 0 1 0 
+							children [ 
+								# Centro
+								Shape {
+									appearance DEF COLOR_CENTRO Appearance {
+										material Material { 
+											diffuseColor IS color_centro
+										}
+									}
+									geometry Cylinder {
+										radius .3
+										height 0.11
+									}
+								}
+								# Pétalos
+								Transform {
+									rotation 0 1 0 0.00
+									children DEF PETALO Transform {
+										translation .5 0 0
+										children Shape {
+											appearance USE COLOR_PETALOS
+											geometry Cylinder {
+												radius .3
+												height 0.1
+											}
+										}
+									}
+								}
+								Transform { rotation 0 1 0 1.05 children USE PETALO }
+								Transform { rotation 0 1 0 2.10 children USE PETALO }
+								Transform { rotation 0 1 0 3.14 children USE PETALO }
+								Transform { rotation 0 1 0 4.20 children USE PETALO }
+								Transform { rotation 0 1 0 5.25 children USE PETALO }
+							]
+						}
+						#--- Tallo ---#
+						USE TALLO
+					]
+				}
+			]
+		}
+	}
+
+Flor {
+	color_petalos 1 0 1
+	rotationX 1 0 0 1.2
+	rotationY 0 1 0 1
+}
+
+Transform {
+	translation -3 0 -10
+	children Flor { 
+		color_petalos 1 0 0
+		color_centro 1 1 1
+		rotationX 1 0 0 1.2
+		rotationY 0 1 0 1
+	}
+}
+

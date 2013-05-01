@@ -2,15 +2,27 @@
 
 
 
+
+##---------------------
+## Grupos de flores
+##---------------------
+Transform { translation 10 2 6.5 rotation 0 1 0 0.0  children DEF GrupoFlores1 Inline { url "Flores.wrl" } }
+Transform { translation  9 2 7.4 rotation 0 1 0 0.5  children DEF GrupoFlores1 Inline { url "Flores.wrl" } }
+
+Transform { translation 27 0 2.5 rotation 0 1 0 0.0  children DEF GrupoFlores1 Inline { url "Flores.wrl" } }
+
+
 ##// Arbusto prueba
 Transform {
-	translation 30 .2 20
+	translation 30 0 20
 	children Inline { 
 		url "ArbustoLOD.wrl" 
 	}
 }
 
-
+##---------------------
+## Terreno
+##---------------------
 Shape {
 	appearance Appearance {
 		material Material { diffuseColor 0 1 0 }
@@ -90,6 +102,26 @@ Transform {
 	children Inline { url "CasaExterior.wrl" }
 }
 
+##---------------------
+## Sonidos
+##---------------------
+Sound {  
+    source DEF WaterSplash AudioClip { url "sonidos/Water_splash.wav" }
+    intensity 0.5
+    minFront 20
+    maxFront 100 
+    minBack 20
+    maxBack 100 
+}
+Sound {  
+    source DEF WaterWalking AudioClip { url "sonidos/Walking_in_water.wav" }
+    intensity 0.5
+    minFront 20
+    maxFront 100 
+    minBack 20
+    maxBack 100 
+}
+
 
 ##---------------------
 ## Lago pequeño
@@ -97,6 +129,9 @@ Transform {
 Transform {
 	translation	4.5 0.1 15
 	children [
+		DEF PSensor ProximitySensor {
+			size 2 10 4
+		}
 		Shape {
 			appearance Appearance {
 				material Material { diffuseColor 0 1 1 }
@@ -110,6 +145,9 @@ Transform {
 		}
 	]
 }
+ROUTE PSensor.enterTime TO WaterSplash.set_startTime
+ROUTE PSensor.exitTime  TO WaterSplash.set_startTime
+
 
 ##---------------------
 ## Lago grande
@@ -117,6 +155,9 @@ Transform {
 Transform {
 	translation	22 -0.75 12
 	children [
+		DEF PSensor2 ProximitySensor {
+			size 12 10 12
+		}
 		Shape {
 			appearance Appearance {
 				material Material { diffuseColor 0 1 1 }
@@ -139,6 +180,9 @@ Transform {
 		}
 	]
 }
+ROUTE PSensor2.enterTime TO WaterWalking.set_startTime
+ROUTE PSensor2.exitTime  TO WaterWalking.set_stopTime
+
 DEF NadarSensor TimeSensor {
 	enabled TRUE
 	cycleInterval 100.0

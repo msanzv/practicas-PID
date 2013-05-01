@@ -3,32 +3,48 @@
 ##---------------------
 ## Caña
 ##---------------------
-Transform {
-	rotation 0 1 0 1.57
+Group {
 	children [
-		Transform {
-			rotation 0 0 1 -.8 
-			children Shape {
-				appearance Appearance {
-					material Material { diffuseColor 0.5 0.5 0.0 }
-				}
-				geometry Cylinder {
-					radius .05
-					height 3
-				}
-			}
-		},
-		Transform {
-			translation 1 0 0
-			children Shape {
-				appearance Appearance {
-					material Material { diffuseColor 0.5 0.5 0.5 }
-				}
-				geometry Cylinder {
-					radius .01
-					height 2
-				}
+		# Sensor para mover la caña junto al avatar
+		DEF PSensor ProximitySensor {
+			center 0 0 0
+			size 1000 1000 1000
+		}	
+		DEF PTransform Transform {
+			children Transform {
+				translation .8 0 -3
+				rotation 0 1 0 1.57
+				children [
+					Transform {
+						rotation 0 0 1 -.8 
+						children Shape {
+							appearance Appearance {
+								material Material { diffuseColor 0.5 0.5 0.0 }
+							}
+							geometry Cylinder {
+								radius .05
+								height 3
+							}
+						}
+					},
+					Transform {
+						translation 1 0 0
+						children Shape {
+							appearance Appearance {
+								material Material { diffuseColor 0.5 0.5 0.5 }
+							}
+							geometry Cylinder {
+								radius .01
+								height 2
+							}
+						}
+					}
+				]
 			}
 		}
 	]
 }
+ROUTE PSensor.position_changed TO PTransform.set_translation
+ROUTE PSensor.orientation_changed TO PTransform.set_rotation
+
+

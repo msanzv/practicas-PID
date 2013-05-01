@@ -1,7 +1,6 @@
 #VRML V2.0 utf8
 
 
-
 ##---------------------
 ## Avatar
 ##---------------------
@@ -12,6 +11,7 @@ NavigationInfo {
 	speed 2.0
 	type "WALK"
 }
+
 
 ##---------------------
 ## Puntos de vista
@@ -25,16 +25,17 @@ Group {
 	]
 }
 
+
 ##---------------------
 ## Fondo
 ##---------------------
-
 DEF BACKGROUND Background { 
     skyColor [ 0 0 1, .9 .9 1 ] 
     skyAngle 1.6 
     groundColor [ 0 0 0, 0 .5 0 ] 
     groundAngle [ 1.50 ] 
   } 
+
 
 ##---------------------
 ## Sol
@@ -49,9 +50,12 @@ DEF SUN PointLight {
 	intensity 1
 }
 
-Inline {
-	url "Terreno.wrl"
-}
+
+##---------------------
+## Escenario inicial
+##---------------------
+Inline { url "Exterior.wrl" }
+Inline { url "Canya.wrl" }
 
 
 
@@ -59,7 +63,7 @@ Inline {
 ## Info
 ##---------------------
 WorldInfo { 
-	title "Cabin by the lake" 
+	title "Cabin by the lake - Mario Sanz" 
 	info [ 
 		"Copyright (c) by Mario Sanz", 
 		"masanvi5@fiv.upv.es", 

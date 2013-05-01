@@ -15,7 +15,7 @@ PROTO Flor [
 		scale .2 .2 .2
 		children LOD {
 			center 0 0 0
-			range [ 20, 80 ]
+			range [ 20, 100 ]
 			level [
 				#--- Nivel 1: Detalle Alto ---#
 				Transform {

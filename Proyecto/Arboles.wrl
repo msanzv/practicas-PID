@@ -1,0 +1,121 @@
+#VRML V2.0 utf8
+
+
+##---------------------
+## Definiciones
+##---------------------
+PROTO Arbol1 [
+] {
+	Transform {
+		scale .6 .6 .6
+		translation 0 .5 0
+		children LOD {
+			center 0 0 0
+			range [ 100 ]
+			level [
+				#--- Nivel 1: Alta definicion ---#
+				Transform {
+					children [
+						Shape {
+							appearance Appearance {
+								material Material { diffuseColor .6 .4 .1 }
+								texture ImageTexture { url "res/texturas/tree_wood.jpg" }
+							}
+							geometry Cylinder { 
+								radius .4 
+								height 2
+							}
+						}
+						Transform {
+							translation 0 2 0
+							children Shape {
+								appearance DEF Hojas1 Appearance {
+									material Material { diffuseColor 0 1 0 }
+									texture ImageTexture { url "res/texturas/tree_green.jpg" }
+								}
+								geometry Cone { height 2 bottomRadius 2.0 }
+							}
+						}
+						Transform {
+							translation 0 3 0
+							children Shape {
+								appearance USE Hojas1 
+								geometry Cone { height 2 bottomRadius 1.6 }
+							}
+						}
+						Transform {
+							translation 0 4 0
+							children Shape {
+								appearance USE Hojas1
+								geometry Cone { height 2 bottomRadius 1.2 }
+							}
+						}
+					]
+				}
+
+				#--- Nivel 3: Vacío ---#
+				Group {}
+			]
+		}
+	}
+}
+
+PROTO Arbol2 [
+] {
+	Transform {
+		#scale .6 .6 .6
+		translation 0 -2.5 0
+		children LOD {
+			center 0 0 0
+			range [ 100 ]
+			level [
+				#--- Nivel 1: Alta definicion ---#
+				Transform {
+					children [
+						Shape {
+							appearance Appearance {
+								material Material { diffuseColor .6 .4 .1 }
+								texture ImageTexture { url "res/texturas/tree_wood2.jpg" }
+							}
+							geometry Cylinder { 
+								radius .4 
+								height 2
+							}
+						}
+						Transform {
+							scale 1 .5 1
+							translation 0 1.9 0
+							children Shape {
+								appearance DEF Hojas2 Appearance {
+									texture ImageTexture { url "res/texturas/tree_green.jpg" }
+								}
+								geometry Sphere { radius 2.0 }
+							}
+						}
+						Transform {
+							scale 1 .7 1
+							translation 0 3.5 0
+							children Shape {
+								appearance USE Hojas2 
+								geometry Sphere { radius 1.4 }
+							}
+						}
+						Transform {
+							translation 0 5 0
+							children Shape {
+								appearance USE Hojas2
+								geometry Sphere { radius 0.8 }
+							}
+						}
+					]
+				}
+
+				#--- Nivel 3: Vacío ---#
+				Group {}
+			]
+		}
+	}
+}
+
+Arbol2 {}
+

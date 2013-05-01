@@ -5,7 +5,7 @@
 ## Avatar
 ##---------------------
 NavigationInfo {
-	avatarSize [0.5 1 0.5]
+	avatarSize [.5 1 0.5]
 	headlight TRUE
 	visibilityLimit	0.0 
 	speed 2.0

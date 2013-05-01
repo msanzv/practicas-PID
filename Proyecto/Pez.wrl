@@ -13,7 +13,7 @@ DEF Pez Transform {
 							appearance Appearance {
 								material Material { diffuseColor 0 1 1 }
 								texture DEF TEXTURE_PEZ ImageTexture { 
-									url "texturas/scales.jpg" 
+									url "res/texturas/scales.jpg" 
 								}
 							}
 							geometry Extrusion {

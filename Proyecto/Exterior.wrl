@@ -2,24 +2,6 @@
 
 
 
-
-##---------------------
-## Grupos de flores
-##---------------------
-Transform { translation 10 2 6.5 rotation 0 1 0 0.0  children DEF GrupoFlores1 Inline { url "Flores.wrl" } }
-Transform { translation  9 2 7.4 rotation 0 1 0 0.5  children DEF GrupoFlores1 Inline { url "Flores.wrl" } }
-
-Transform { translation 27 0 2.5 rotation 0 1 0 0.0  children DEF GrupoFlores1 Inline { url "Flores.wrl" } }
-
-
-##// Arbusto prueba
-Transform {
-	translation 30 0 20
-	children Inline { 
-		url "ArbustoLOD.wrl" 
-	}
-}
-
 ##---------------------
 ## Terreno
 ##---------------------
@@ -27,7 +9,7 @@ Shape {
 	appearance Appearance {
 		material Material { diffuseColor 0 1 0 }
 		texture ImageTexture { 
-			url "texturas/grass.jpg" 
+			url "res/texturas/grass.jpg" 
 		}
 	}
 	geometry ElevationGrid {
@@ -92,6 +74,27 @@ Shape {
 }
 
 
+##---------------------
+## Grupos de flores
+##---------------------
+Transform { translation 10 2 6.5 rotation 0 1 0 0.0  children DEF GrupoFlores1 Inline { url "Flores.wrl" } }
+Transform { translation  9 2 7.4 rotation 0 1 0 0.5  children DEF GrupoFlores1 Inline { url "Flores.wrl" } }
+
+Transform { translation 27 0 2.5 rotation 0 1 0 0.0  children DEF GrupoFlores1 Inline { url "Flores.wrl" } }
+
+
+
+##---------------------
+## Árboles
+##---------------------
+EXTERNPROTO Arbol1 [] "Arboles.wrl#Arbol1"
+
+Transform {
+	translation 10 0 15
+	children Arbol1 {}
+}
+
+
 
 ##---------------------
 ## Cabaña
@@ -106,7 +109,7 @@ Transform {
 ## Sonidos
 ##---------------------
 Sound {  
-    source DEF WaterSplash AudioClip { url "sonidos/Water_splash.wav" }
+    source DEF WaterSplash AudioClip { url "res/audio/Water_splash.wav" }
     intensity 0.5
     minFront 20
     maxFront 100 
@@ -114,7 +117,7 @@ Sound {
     maxBack 100 
 }
 Sound {  
-    source DEF WaterWalking AudioClip { url "sonidos/Walking_in_water.wav" }
+    source DEF WaterWalking AudioClip { url "res/audio/Walking_in_water.wav" }
     intensity 0.5
     minFront 20
     maxFront 100 
@@ -136,7 +139,7 @@ Transform {
 			appearance Appearance {
 				material Material { diffuseColor 0 1 1 }
 				texture DEF TEXTURE_WATER ImageTexture { 
-					url "texturas/water2.jpg" 
+					url "res/texturas/water2.jpg" 
 				}
 			}
 			geometry Box {

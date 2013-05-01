@@ -7,7 +7,7 @@
 PROTO Arbol1 [
 ] {
 	Transform {
-		scale .6 .6 .6
+		scale .5 .5 .5
 		translation 0 .5 0
 		children LOD {
 			center 0 0 0
@@ -21,10 +21,7 @@ PROTO Arbol1 [
 								material Material { diffuseColor .6 .4 .1 }
 								texture ImageTexture { url "res/texturas/tree_wood.jpg" }
 							}
-							geometry Cylinder { 
-								radius .4 
-								height 2
-							}
+							geometry Cylinder { height 2 radius .4 }
 						}
 						Transform {
 							translation 0 2 0
@@ -53,7 +50,7 @@ PROTO Arbol1 [
 					]
 				}
 
-				#--- Nivel 3: Vacío ---#
+				#--- Nivel 2: Vacío ---#
 				Group {}
 			]
 		}
@@ -63,8 +60,8 @@ PROTO Arbol1 [
 PROTO Arbol2 [
 ] {
 	Transform {
-		#scale .6 .6 .6
-		translation 0 -2.5 0
+		scale .5 .5 .5
+		translation 0 0 0
 		children LOD {
 			center 0 0 0
 			range [ 100 ]
@@ -110,12 +107,11 @@ PROTO Arbol2 [
 					]
 				}
 
-				#--- Nivel 3: Vacío ---#
+				#--- Nivel 2: Vacío ---#
 				Group {}
 			]
 		}
 	}
 }
 
-Arbol2 {}
 

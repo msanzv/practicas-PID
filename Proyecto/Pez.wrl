@@ -6,7 +6,7 @@ DEF Pez Transform {
 			children [		
 				Transform {
 					scale .1 .1 .1
-					translation 3 0 0
+					translation .5 0 0
 					rotation 1 0 0 3.14
 					children [
 						Shape {

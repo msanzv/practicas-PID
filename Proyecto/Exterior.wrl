@@ -78,21 +78,25 @@ Shape {
 ## Grupos de flores
 ##---------------------
 Transform { translation 10 2 6.5 rotation 0 1 0 0.0  children DEF GrupoFlores1 Inline { url "Flores.wrl" } }
-Transform { translation  9 2 7.4 rotation 0 1 0 0.5  children DEF GrupoFlores1 Inline { url "Flores.wrl" } }
+Transform { translation  9 2 7.4 rotation 0 1 0 0.5  children DEF GrupoFlores2 Inline { url "Flores.wrl" } }
 
-Transform { translation 27 0 2.5 rotation 0 1 0 0.0  children DEF GrupoFlores1 Inline { url "Flores.wrl" } }
+Transform { translation 27 0 2.5 rotation 0 1 0 0.0  children DEF GrupoFlores3 Inline { url "Flores.wrl" } }
+
+#EXTERNPROTO Flor1 [ 
+#	field SFColor color_petalos 
+#] "Flores.wrl"
+
+#Transform {
+#	translation 11 .2 14
+#	children Flor1 { color_petalos .1 .1 .1 }
+#}
 
 
 
 ##---------------------
 ## Árboles
 ##---------------------
-EXTERNPROTO Arbol1 [] "Arboles.wrl#Arbol1"
 
-Transform {
-	translation 10 0 15
-	children Arbol1 {}
-}
 
 
 
@@ -170,16 +174,32 @@ Transform {
 				size 13 1 13
 			}
 		}
-		DEF Pez Transform {
-			rotation 0 1 0 0
-			children [
-				Transform {
+		Transform {
+			translation 0 0 0
+			children DEF Pez Transform {
+				rotation 0 1 0 0
+				children [
+					Transform {
+						translation 0 .5 0
+						children Inline {
+							url "Pez.wrl"
+						}
+					}
+				]		
+			}
+		}
+		Transform {
+			scale .5 1 .5
+			rotation 0 1 0 1.0
+			translation -2 0 2
+			children DEF Pez2 Transform {
+				children Transform {
 					translation 0 .5 0
 					children Inline {
 						url "Pez.wrl"
 					}
-				}
-			]		
+				}		
+			}
 		}
 	]
 }
@@ -238,22 +258,28 @@ DEF	Nadar Script {
 
 			//Perimetro de la zona del pez (temporal)
 			if(positivo == TRUE){
-				if     (x< 0.95){ x += 0.005; }
-				else if(z< 0.95){ z += 0.005; }
+				if     (x< 0.95){ x += 0.005; if(rot != 0.00) rot = 0.00; }
+				else if(z< 0.95){ z += 0.005; if(rot != 4.71) rot = 4.71; }
 			    else positivo = FALSE; 
 			}
 			else{
-				if     (x>-0.95){ x -= 0.005; }
-				else if(z>-0.95){ z -= 0.005; }
+				if     (x>-0.95){ x -= 0.005; if(rot != 3.14) rot = 3.14; }
+				else if(z>-0.95){ z -= 0.005; if(rot != 1.57) rot = 1.57; }
 				else positivo = TRUE;
 			}
 			position_changed[0] = x;
 			position_changed[2] = z;
+			rotation_changed[0] = 0;
+			rotation_changed[1] = 1;
+			rotation_changed[2] = 0;
+			rotation_changed[3] = rot;
 		}"
 
 }
 ROUTE NadarSensor.fraction_changed TO Nadar.set_fraction
 ROUTE Nadar.position_changed TO Pez.set_translation
-ROUTE Nadar.rotation_changed TO Pez.rotation
+ROUTE Nadar.rotation_changed TO Pez.set_rotation
+ROUTE Nadar.position_changed TO Pez2.set_translation
+ROUTE Nadar.rotation_changed TO Pez2.set_rotation
 
 

@@ -8,8 +8,8 @@ PROTO Flor [
 	field SFFloat altura 2.0
 	field SFColor color_centro 1 1 1 	# Color del centro 
 	field SFColor color_petalos 1 1 0 	# Color de los petalos 
-	field SFRotation rotationX 1 0 0 0 	# Inclinacion 
-	field SFRotation rotationY 0 1 0 0 	# Rotacion 
+	field SFRotation rotationX 1 0 0 1.2 	# Inclinacion 
+	field SFRotation rotationY 0 1 0 1.57 	# Rotacion 
 ] {
 	Transform {
 		scale .2 .2 .2

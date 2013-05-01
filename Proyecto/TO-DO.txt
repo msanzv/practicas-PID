@@ -1,31 +1,31 @@
 Para la generación de la geometría:
-	- Modelos poligonales (definidos por el propio alumno)
-	X Mallas de elevación para la creación de suelo
-	X Formas creadas por extrusión (mediante programas de ayuda originales)
+	- Modelos poligonales (definidos por el propio alumno) 
+	X Mallas de elevación para la creación de suelo										// Terreno
+	X Formas creadas por extrusión (mediante programas de ayuda originales) 			// Tejado, Pez
 
 Para añadir detalles a los objetos:
 	- Utilización de distintos tipos de material
 	- Asignación de colores a las coordenadas
-	X Utilización de imágenes para texturar los objetos
-	- Utilización de LOD’s para simplificar los objetos
+	X Utilización de imágenes para texturar los objetos									// Lagos, árboles
+	X Utilización de LOD’s para simplificar los objetos
 
 Para añadir detalles a la escena:
 	- Utilización de distintas fuentes de luz.
-	X Utilización de fondos, si son necesarios.
+	- Utilización de fondos, si son necesarios.
 	- Efectos de niebla, si viene al caso.
 	- Utilización de interpoladores para incrementar el realismo.
-	- Si se desea se puede añadir sonidos. Para música de fondo utilizar ficheros midi
-	ocupan mucho menos que los wav.
+	X Si se desea se puede añadir sonidos. Para música de fondo utilizar ficheros midi	// Agua1, Agua2
+	  ocupan mucho menos que los wav.
 
 Para la interacción con el mundo:
-	- Definir distintos puntos de vista, para poder acceder a distintas zonas del mundo
-	de forma rápida
+	- Definir distintos puntos de vista, para poder acceder a distintas zonas del mundo	// Vista avatar
+	  de forma rápida
 	- Detección de colisiones
 	- Sensibilización del observador y sus acciones para añadir un mayor realismo.
 
 Ampliaciones:
-	- Uso de prototipos (no los de ejemplos suministrados)
-	- Utilización de scripts (no los de ejemplos suministrados)
+	X Uso de prototipos (no los de ejemplos suministrados)								// Flores, Arboles
+	X Utilización de scripts (no los de ejemplos suministrados)							// Nadar (peces)
 	- Uso de nodos extras de Cortona
 
 --------------------------------------------

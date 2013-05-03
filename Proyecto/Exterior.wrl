@@ -98,11 +98,41 @@ Transform { translation 27 0 2.5 rotation 0 1 0 0.0  children DEF GrupoFlores3 I
 ##---------------------
 EXTERNPROTO Arbol1 [] "Arboles.wrl#Arbol1"
 EXTERNPROTO Arbol2 [] "Arboles.wrl#Arbol2"
+EXTERNPROTO Tronco1 [] "Arboles.wrl#Tronco1"
+EXTERNPROTO Tronco2 [] "Arboles.wrl#Tronco2"
 
-Transform { translation 20 0 3.0  children Arbol1 {} }
-Transform { translation 21 0 2.5  children Arbol1 {} }
-Transform { translation 22 0 4.0  children Arbol2 {} }
-Transform { translation 23 0 3.5  children Arbol2 {} }
+DEF Bosque1 Transform {
+	translation 19 0 1
+	children [
+		Transform { translation 0.0 0.0 0.0  children Arbol1 {} }
+		Transform { translation 0.8 -.1 1.6  children Arbol1 {} }
+		Transform { translation 1.9 0.0 0.7  children Arbol1 {} }
+		Transform { translation 3.6 -.2 2.2  children Arbol1 {} }
+
+		Transform { translation 0.0 0.3 2.7  children Arbol2 {} }
+		Transform { translation 1.1 0.0 0.3  children Arbol2 {} }
+		Transform { translation 2.7 0.2 0.5  children Arbol2 {} }
+		Transform { translation 2.5 0.0 2.5  children Arbol2 {} }
+
+		Transform { translation 1.1 -.3 2.8  children Tronco1 {} }
+		Transform { translation 3.5 -.2 0.4  children Tronco2 {} }
+	]
+}
+
+DEF Bosque2 Transform {
+	translation 3 .5 12
+	children [
+		Transform { translation 0.0 0.2 0.0  children Arbol1 {} }
+		Transform { translation 0.2 0.0 1.3  children Arbol1 {} }
+		Transform { translation -.8 -.3 2.0  children Arbol1 {} }
+		Transform { translation 0.1 0.2 3.2  children Arbol1 {} }
+		Transform { translation -.3 -.2 4.9  children Arbol1 {} }
+		Transform { translation 1.9 0.3 0.5  children Arbol2 {} }
+		Transform { translation 2.9 0.4 1.9  children Arbol2 {} }
+
+		Transform { translation 1.4 -.1 1.3  children Tronco2 {} }
+	]
+}
 
 
 
@@ -166,10 +196,10 @@ ROUTE PSensor.exitTime  TO WaterSplash.set_startTime
 ## Lago grande
 ##---------------------
 Transform {
-	translation	22 -0.75 12
+	translation	22 -0.75 12.5
 	children [
 		DEF PSensor2 ProximitySensor {
-			size 12 10 12
+			size 12 10 11
 		}
 		Shape {
 			appearance Appearance {
@@ -177,7 +207,7 @@ Transform {
 				texture USE TEXTURE_WATER
 			}
 			geometry Box {
-				size 13 1 13
+				size 13 1 12
 			}
 		}
 		Transform {

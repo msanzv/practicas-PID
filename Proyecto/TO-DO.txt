@@ -7,7 +7,7 @@ Para añadir detalles a los objetos:
 	- Utilización de distintos tipos de material
 	- Asignación de colores a las coordenadas
 	X Utilización de imágenes para texturar los objetos									// Lagos, árboles
-	X Utilización de LOD’s para simplificar los objetos
+	X Utilización de LOD’s para simplificar los objetos									// Flores, árboles
 
 Para añadir detalles a la escena:
 	- Utilización de distintas fuentes de luz.
@@ -18,13 +18,13 @@ Para añadir detalles a la escena:
 	  ocupan mucho menos que los wav.
 
 Para la interacción con el mundo:
-	- Definir distintos puntos de vista, para poder acceder a distintas zonas del mundo	// Vista avatar
+	- Definir distintos puntos de vista, para poder acceder a distintas zonas del mundo	// Avatar, aérea
 	  de forma rápida
 	- Detección de colisiones
 	- Sensibilización del observador y sus acciones para añadir un mayor realismo.
 
 Ampliaciones:
-	X Uso de prototipos (no los de ejemplos suministrados)								// Flores, Arboles
+	X Uso de prototipos (no los de ejemplos suministrados)								// Flores, Arboles, ScriptNadar
 	X Utilización de scripts (no los de ejemplos suministrados)							// Nadar (peces)
 	- Uso de nodos extras de Cortona
 

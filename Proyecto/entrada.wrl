@@ -8,7 +8,7 @@ NavigationInfo {
 	avatarSize [.5 1 0.5]
 	headlight TRUE
 	visibilityLimit	0.0 
-	speed 2.0
+	speed 3.0
 	type "WALK"
 }
 
@@ -19,8 +19,8 @@ NavigationInfo {
 Group {
 	children [
 		Viewpoint {
-			position 11 1 20
-			orientation	1 0 0 -.05
+			position 11 1 20 	orientation	1 0 0 -.05
+			#position 15 30 10 	orientation 1 0 0 -1.57
 		}
 	]
 }

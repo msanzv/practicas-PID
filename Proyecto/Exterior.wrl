@@ -94,9 +94,15 @@ Transform { translation 27 0 2.5 rotation 0 1 0 0.0  children DEF GrupoFlores3 I
 
 
 ##---------------------
-## Árboles
+## Arboles
 ##---------------------
+EXTERNPROTO Arbol1 [] "Arboles.wrl#Arbol1"
+EXTERNPROTO Arbol2 [] "Arboles.wrl#Arbol2"
 
+Transform { translation 20 0 3.0  children Arbol1 {} }
+Transform { translation 21 0 2.5  children Arbol1 {} }
+Transform { translation 22 0 4.0  children Arbol2 {} }
+Transform { translation 23 0 3.5  children Arbol2 {} }
 
 
 
@@ -175,8 +181,8 @@ Transform {
 			}
 		}
 		Transform {
-			translation 0 0 0
-			children DEF Pez Transform {
+			translation .5 0 .5
+			children DEF Pez1 Transform {
 				rotation 0 1 0 0
 				children [
 					Transform {
@@ -213,73 +219,93 @@ DEF NadarSensor TimeSensor {
 	startTime 1.0
 	stopTime  0.0
 }
-DEF	Nadar Script {
-	field SFFloat cycles 1
-	field SFInt32 cont 0
-	field SFBool positivo TRUE
-	eventOut SFInt32 cont_out
+
+PROTO NadarScript [
+	field SFFloat velocidad 0.005 
+	field SFFloat distancia 0.9
 	eventIn SFFloat set_fraction
 	eventOut SFVec3f position_changed
 	eventOut SFRotation rotation_changed
-	url "javascript:
-		function set_fraction( f, tm ) {
-//			position_changed[0] = Math.sin( ((f*360)*cycles*10)/180.0 * 3.1415927 );
-//			position_changed[1] = 0;
-//			position_changed[2] = Math.cos( ((f*360)*cycles*10)/180.0 * 3.1415927 ); 
+] {
+	Script {
+		field SFFloat delta IS velocidad		## Incremento de distancia en cada instante
+		field SFFloat side IS distancia			## Lado del cuadrado recorrido
+		field SFFloat cycles 1
+		field SFInt32 cont 0
+		field SFBool positivo TRUE
+		eventOut SFInt32 cont_out
+		eventIn SFFloat set_fraction IS set_fraction
+		eventOut SFVec3f position_changed IS position_changed
+		eventOut SFRotation rotation_changed IS rotation_changed
+		url "javascript:
+			function set_fraction( f, tm ) {
+	//			position_changed[0] = Math.sin( ((f*360)*cycles*10)/180.0 * 3.1415927 );
+	//			position_changed[1] = 0;
+	//			position_changed[2] = Math.cos( ((f*360)*cycles*10)/180.0 * 3.1415927 ); 
 
-			//Recorrido aleatorio en un area de 2x2
-			var x = position_changed[0];
-			var z = position_changed[2];
-			var rot = rotation_changed[3];
-//			cont +=1;
-//			var dist = Math.floor(Math.random()*100) + 100;
+				//Recorrido aleatorio en un area de 2x2
+				var x = position_changed[0];
+				var z = position_changed[2];
+				var rot = rotation_changed[3];
+	//			cont +=1;
+	//			var dist = Math.floor(Math.random()*100) + 100;
 
-//			if(cont%dist == 0){
-//				var derizq = Math.floor(Math.random(2)*10);
-//				if(derizq % 2 == 0)
-//					rot += 1.57;
-//				else
-//					rot -= 1.57;
+	//			if(cont%dist == 0){
+	//				var derizq = Math.floor(Math.random(2)*10);
+	//				if(derizq % 2 == 0)
+	//					rot += 1.57;
+	//				else
+	//					rot -= 1.57;
 
-//				if(rot > 4.75) rot = 0.0;
-//				else if(rot < 0) rot = 4.71;
-//				rotation_changed[3] = rot;
-//			}
-//			rotation_changed[0] = 0;
-//			rotation_changed[1] = 1;
-//			rotation_changed[2] = 0;
-//			rotation_changed[3] = rot;
+	//				if(rot > 4.75) rot = 0.0;
+	//				else if(rot < 0) rot = 4.71;
+	//				rotation_changed[3] = rot;
+	//			}
+	//			rotation_changed[0] = 0;
+	//			rotation_changed[1] = 1;
+	//			rotation_changed[2] = 0;
+	//			rotation_changed[3] = rot;
 
 
-//			if(rot<0.5 || rot>6.3){		 if(z<0.95) position_changed[2] += 0.005; }
-//			else if(rot>1.5 && rot<1.6){ if(x<0.95) position_changed[0] += 0.005; }
-//			else if(rot>3.1 && rot<3.2){ if(z>-.95) position_changed[2] -= 0.005; }
-//			else if(rot>4.6 && rot<4.8){ if(x>-.95) position_changed[0] -= 0.005; }
+	//			if(rot<0.5 || rot>6.3){		 if(z<0.95) position_changed[2] += 0.005; }
+	//			else if(rot>1.5 && rot<1.6){ if(x<0.95) position_changed[0] += 0.005; }
+	//			else if(rot>3.1 && rot<3.2){ if(z>-.95) position_changed[2] -= 0.005; }
+	//			else if(rot>4.6 && rot<4.8){ if(x>-.95) position_changed[0] -= 0.005; }
 
-			//Perimetro de la zona del pez (temporal)
-			if(positivo == TRUE){
-				if     (x< 0.95){ x += 0.005; if(rot != 0.00) rot = 0.00; }
-				else if(z< 0.95){ z += 0.005; if(rot != 4.71) rot = 4.71; }
-			    else positivo = FALSE; 
-			}
-			else{
-				if     (x>-0.95){ x -= 0.005; if(rot != 3.14) rot = 3.14; }
-				else if(z>-0.95){ z -= 0.005; if(rot != 1.57) rot = 1.57; }
-				else positivo = TRUE;
-			}
-			position_changed[0] = x;
-			position_changed[2] = z;
-			rotation_changed[0] = 0;
-			rotation_changed[1] = 1;
-			rotation_changed[2] = 0;
-			rotation_changed[3] = rot;
-		}"
-
+				//Perimetro de la zona del pez (temporal)
+				if(positivo == TRUE){
+					if     (x< side){ x += delta; if(rot != 0.00) rot = 0.00; }
+					else if(z< side){ z += delta; if(rot != 4.71) rot = 4.71; }
+				    else positivo = FALSE; 
+				}
+				else{
+					if     (x>-side){ x -= delta; if(rot != 3.14) rot = 3.14; }
+					else if(z>-side){ z -= delta; if(rot != 1.57) rot = 1.57; }
+					else positivo = TRUE;
+				}
+				position_changed[0] = x;
+				position_changed[2] = z;
+				rotation_changed[0] = 0;
+				rotation_changed[1] = 1;
+				rotation_changed[2] = 0;
+				rotation_changed[3] = rot;
+			}"
+	}
 }
-ROUTE NadarSensor.fraction_changed TO Nadar.set_fraction
-ROUTE Nadar.position_changed TO Pez.set_translation
-ROUTE Nadar.rotation_changed TO Pez.set_rotation
-ROUTE Nadar.position_changed TO Pez2.set_translation
-ROUTE Nadar.rotation_changed TO Pez2.set_rotation
+DEF NadarPez1 NadarScript { velocidad 0.007  distancia 0.8 }
+DEF NadarPez2 NadarScript { velocidad 0.003  distancia 0.6 }
+
+ROUTE NadarSensor.fraction_changed TO NadarPez1.set_fraction
+ROUTE NadarPez1.position_changed TO Pez1.set_translation
+ROUTE NadarPez1.rotation_changed TO Pez1.set_rotation
+ROUTE NadarSensor.fraction_changed TO NadarPez2.set_fraction
+ROUTE NadarPez2.position_changed TO Pez2.set_translation
+ROUTE NadarPez2.rotation_changed TO Pez2.set_rotation
+
+#ROUTE NadarSensor.fraction_changed TO Nadar.set_fraction
+#ROUTE Nadar.position_changed TO Pez1.set_translation
+#ROUTE Nadar.rotation_changed TO Pez1.set_rotation
+#ROUTE Nadar.position_changed TO Pez2.set_translation
+#ROUTE Nadar.rotation_changed TO Pez2.set_rotation
 
 

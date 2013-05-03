@@ -55,7 +55,7 @@ DEF SUN PointLight {
 ## Escenario inicial
 ##---------------------
 Inline { url "Exterior.wrl" }
-Inline { url "Canya.wrl" }
+Inline { url "Objetos.wrl" }
 
 
 

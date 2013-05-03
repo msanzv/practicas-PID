@@ -1,0 +1,183 @@
+#VRML V2.0 utf8
+
+
+##---------------------
+## Cartel
+##---------------------
+Transform {
+	rotation 0 1 0 -1.57
+	translation 21 .5 9.5
+	children [ 
+		DEF TSensor TouchSensor{ }
+		Transform {
+			children [
+				Shape {
+					appearance DEF AppCartel Appearance {
+						material Material { diffuseColor .6 .4 .1 }
+						texture ImageTexture { url "res/texturas/tree_wood.jpg" }
+					}
+					geometry Cylinder { radius 0.07  height 1.2 }
+				}
+				Transform {
+					translation 0 .65 .13
+					children Shape {
+						appearance Appearance {
+							material Material {			# Hint to browser to ignore lighting
+								diffuseColor 0 0 0 		# black
+								specularColor 0 0 0 	# black
+								ambientIntensity 0.0 	# black
+								shininess 0.0 			# none
+								emissiveColor .2 .1 0 	# text color
+							}
+						}
+						geometry Text {
+							string [ "¿Te apetece pescar?" "¿O cortar leña?..." " " "Oh! Tu puntero! ;)"]
+							fontStyle FontStyle {
+								family "SERIF"
+								style "PLAIN"
+								justify "MIDDLE"
+								language "es"
+								size 0.12
+								spacing 1.0
+							}
+							length [ 0 0 0 0 ]
+							maxExtent 1.0
+						}
+					}
+				}
+			]
+		}
+		Transform {
+			rotation 0 0 1 1.57
+			translation 0 .5 .08
+			children Shape {
+				appearance USE AppCartel
+				geometry Box { size .6 1 .07 }
+			}
+		}
+	]
+}
+
+
+##---------------------
+## Caña
+##---------------------
+DEF Objects Switch {
+	whichChoice 2
+	choice [
+		#--- Opcion 0: Nada ---#
+		Group {}
+
+		#--- Opcion 1: Caña ---#
+		Group {
+			children [
+				# Sensor para mover la caña junto al avatar
+				DEF PSensor1 ProximitySensor {
+					center 0 0 0
+					size 1000 1000 1000
+				}	
+				DEF PTransform1 Transform {
+					children Transform {
+						translation 1.0 .2 -3
+						rotation 0 1 0 1.57
+						children [
+							Transform {
+								rotation 0 0 1 -.8 
+								children Shape {
+									appearance Appearance {
+										material Material { diffuseColor 0.5 0.5 0.0 }
+									}
+									geometry Cylinder {
+										radius .05
+										height 3
+									}
+								}
+							},
+							Transform {
+								translation 1 0 0
+								children Shape {
+									appearance Appearance {
+										material Material { diffuseColor 0.5 0.5 0.5 }
+									}
+									geometry Cylinder {
+										radius .01
+										height 2
+									}
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+
+
+		#--- Opcion 2: Hacha ---#
+		Group {
+			children [
+				# Sensor para mover el hacha junto al avatar
+				DEF PSensor2 ProximitySensor {
+					center 0 0 0
+					size 1000 1000 1000
+				}	
+				DEF PTransform2 Transform {
+					children Transform {
+						scale .5 .5 .5
+						translation .3 0 -.8
+						rotation 0 1 0 1.57
+						children [
+							Transform {
+								rotation 0 0 1 -.8 
+								children Shape {
+									appearance DEF AppHacha Appearance {
+										material Material { diffuseColor .6 .4 .1 }
+										texture ImageTexture { url "res/texturas/tree_wood2.jpg" }
+									}
+									geometry Cylinder {
+										radius .08
+										height 2
+									}
+								}
+							},
+							Transform {
+								rotation 0 0 1 .785
+								translation .7 .25 0
+								children Shape {
+									appearance Appearance {
+										material Material { diffuseColor 0.5 0.5 0.5 }
+									}
+									geometry Box { size .5 .5 .05 }
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	]
+}
+
+ROUTE PSensor1.position_changed TO PTransform1.set_translation
+ROUTE PSensor1.orientation_changed TO PTransform1.set_rotation
+ROUTE PSensor2.position_changed TO PTransform2.set_translation
+ROUTE PSensor2.orientation_changed TO PTransform2.set_rotation
+
+DEF SelectObject Script { 
+    eventIn SFTime touchTime
+    eventOut SFInt32 whichChoice
+    url "javascript:
+      function initialize() {
+        whichChoice = 2;
+      }
+      function touchTime(value, time) {
+        if(whichChoice == 2) 
+        	whichChoice = 0;
+        else whichChoice++;
+      }"
+  }
+
+
+ROUTE TSensor.touchTime TO  SelectObject.touchTime
+ROUTE SelectObject.whichChoice TO Objects.whichChoice
+
+

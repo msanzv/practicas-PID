@@ -17,22 +17,21 @@ NavigationInfo {
 	headlight TRUE
 	visibilityLimit	0.0 
 	speed 3.0
-	type "WALK"
-	#type "FLY"
+	type [ "WALK" "FLY" ]
 }
 
 
 ##---------------------
 ## Puntos de vista
 ##---------------------
-Group {
-	children [
-		Viewpoint {
-			position 11 1 20 	orientation	1 0 0 -.05
-			#position 15 50 10 	orientation 1 0 0 -1.57
-		}
-	]
+DEF ViewPoint1 Viewpoint {
+	position 11 1 20 	orientation	1 0 0 -.05
+	#position 15 50 10 	orientation 1 0 0 -1.57
 }
+DEF ViewPoint2 Viewpoint {
+	position 11 3 3 	orientation	0 1 0 -1.57
+}
+
 
 
 ##---------------------
@@ -65,7 +64,7 @@ DEF SUN PointLight {
 ## Info
 ##---------------------
 WorldInfo { 
-	title "Cabin by the lake - Mario Sanz" 
+	title "El misterio de la casa del lago - Mario Sanz" 
 	info [ 
 		"Copyright (c) by Mario Sanz", 
 		"masanvi5@fiv.upv.es", 

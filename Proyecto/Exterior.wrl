@@ -258,6 +258,7 @@ Transform {
 		}
 	]
 }
+# Sonido al andar por el agua
 ROUTE PSensor.enterTime TO WaterSplash.set_startTime
 ROUTE PSensor.exitTime  TO WaterSplash.set_startTime
 
@@ -279,31 +280,43 @@ Transform {
 		Transform {
 			translation .5 0 .5
 			children DEF Pez1 Transform {
-				rotation 0 1 0 0
-				children [
-					Transform {
-						translation 0 .5 0
-						children Inline { url "Pez.wrl" }
-					}
-				]		
+				children Transform { translation 0 .5 0  children Inline { url "Pez.wrl" } }	
 			}
 		}
 		Transform {
-			scale .5 1 .5
-			rotation 0 1 0 1.0
+			scale .6 1 .6
+			rotation 0 1 0 0.4
 			translation -2 0 2
 			children DEF Pez2 Transform {
-				children Transform {
-					translation 0 .5 0
-					children Inline { url "Pez.wrl" }
+				children Transform { translation 0 .5 0  children Inline { url "Pez.wrl" }
+				}		
+			}
+		}
+		Transform {
+			scale .8 1 .8
+			rotation 0 1 0 1.2
+			translation 1 0 3
+			children DEF Pez3 Transform {
+				children Transform { translation 0 .5 0  children Inline { url "Pez.wrl" }
+				}		
+			}
+		}
+		Transform {
+			scale .6 1 .6
+			rotation 0 1 0 1.8
+			translation -3 0 4
+			children DEF Pez4 Transform {
+				children Transform { translation 0 .5 0  children Inline { url "Pez.wrl" }
 				}		
 			}
 		}
 	]
 }
+# Sonido al andar por el agua
 ROUTE PSensor2.enterTime TO WaterWalking.set_startTime
 ROUTE PSensor2.exitTime  TO WaterWalking.set_stopTime
 
+#Timer para el movimiento de los peces
 DEF NadarSensor TimeSensor {
 	enabled TRUE
 	cycleInterval 100.0
@@ -312,6 +325,7 @@ DEF NadarSensor TimeSensor {
 	stopTime  0.0
 }
 
+#Script para el movimiento de los peces
 PROTO NadarScript [
 	field SFFloat velocidad 0.005 
 	field SFFloat distancia 0.9
@@ -386,6 +400,8 @@ PROTO NadarScript [
 }
 DEF NadarPez1 NadarScript { velocidad 0.007  distancia 0.8 }
 DEF NadarPez2 NadarScript { velocidad 0.003  distancia 0.6 }
+DEF NadarPez3 NadarScript { velocidad 0.004  distancia 0.9 }
+DEF NadarPez4 NadarScript { velocidad 0.006  distancia 0.7 }
 
 ROUTE NadarSensor.fraction_changed TO NadarPez1.set_fraction
 ROUTE NadarPez1.position_changed TO Pez1.set_translation
@@ -393,11 +409,11 @@ ROUTE NadarPez1.rotation_changed TO Pez1.set_rotation
 ROUTE NadarSensor.fraction_changed TO NadarPez2.set_fraction
 ROUTE NadarPez2.position_changed TO Pez2.set_translation
 ROUTE NadarPez2.rotation_changed TO Pez2.set_rotation
-
-#ROUTE NadarSensor.fraction_changed TO Nadar.set_fraction
-#ROUTE Nadar.position_changed TO Pez1.set_translation
-#ROUTE Nadar.rotation_changed TO Pez1.set_rotation
-#ROUTE Nadar.position_changed TO Pez2.set_translation
-#ROUTE Nadar.rotation_changed TO Pez2.set_rotation
+ROUTE NadarSensor.fraction_changed TO NadarPez3.set_fraction
+ROUTE NadarPez3.position_changed TO Pez3.set_translation
+ROUTE NadarPez3.rotation_changed TO Pez3.set_rotation
+ROUTE NadarSensor.fraction_changed TO NadarPez4.set_fraction
+ROUTE NadarPez4.position_changed TO Pez4.set_translation
+ROUTE NadarPez4.rotation_changed TO Pez4.set_rotation
 
 

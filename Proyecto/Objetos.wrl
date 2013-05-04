@@ -66,7 +66,7 @@ Transform {
 ## Objetos del avatar
 ##---------------------
 DEF Objects Switch {
-	whichChoice 2
+	whichChoice 0
 	choice [
 		#--- Opcion 0: Nada ---#
 		Group {}
@@ -131,6 +131,7 @@ DEF Objects Switch {
 							translation .3 0 -0.8
 							rotation 0 1 0 1.57
 							children [
+								#--- Mango
 								Transform {
 									rotation 0 0 1 -.8 
 									children Shape {
@@ -144,6 +145,7 @@ DEF Objects Switch {
 										}
 									}
 								},
+								#--- Hoja
 								Transform {
 									scale .1 .1 .1
 									rotation 0 0 1 .785
@@ -172,7 +174,7 @@ DEF Objects Switch {
 														 4.0 -4   0
 											 	]
 											}
-											coordIndex [ 0 3 2 1 -1
+											coordIndex [    0 3 2 1 -1
 															2 3 7 6 -1
 															0 1 5 4 -1
 															1 2 6 5 -1
@@ -204,7 +206,7 @@ DEF SelectObject Script {
     eventOut SFInt32 whichChoice
     url "javascript:
       function initialize() {
-        whichChoice = 2;
+        whichChoice = 0;
       }
       function touchTime(value, time) {
         if(whichChoice == 2) 

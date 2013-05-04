@@ -1,0 +1,117 @@
+#VRML V2.0 utf8
+
+
+##---------------------
+## Avatar
+##---------------------
+NavigationInfo {
+	avatarSize [.5 1 0.5]
+	headlight TRUE
+	visibilityLimit	0.0 
+	speed 3.0
+	type [ "WALK" "FLY" ]
+}
+
+
+##---------------------
+## Puntos de vista
+##---------------------
+DEF ViewPoint1 Viewpoint {
+	position 0 1 -3 
+	orientation	1 0 0 -.0
+}
+
+##---------------------
+## Sol
+##---------------------
+DEF SUN PointLight { 
+	location 0 30 25
+	radius 200
+	on TRUE
+	ambientIntensity 1
+	attenuation 1 0 0
+	color 1 1 1
+	intensity 1
+}
+
+
+##---------------------
+## Fondo
+##---------------------
+DEF BACKGROUND Background { 
+    skyColor [ 0 0 0, 0 0 0 ] #[ 1 1 1, 1 1 1 ] 
+    skyAngle 1.6 
+    groundColor [ 0 0 0 ] #[ 1 1 1 ] 
+    groundAngle [ ] 
+} 
+
+
+
+##---------------------
+## Limbo
+##---------------------
+Transform {
+	translation 0 0 0
+	children Shape {
+		appearance Appearance {
+			material Material { 
+				diffuseColor 1 1 1
+				emissiveColor 1 1 1 
+			}
+		}
+		geometry Box { size 1000 .1 1000 }
+	}
+}
+
+
+##---------------------
+## Puerta
+##---------------------
+LOD {
+	range [ 30 ]
+	level [
+		#--- Nivel 1: Visible ---#
+		Transform {
+			rotation 0 1 0 1.57
+			translation 0 1 0
+			children [
+				## Hoja
+				Shape {
+					appearance Appearance {
+						material Material { diffuseColor 0.3 0.2 0.0 }
+					}
+					geometry Box {
+						size .1 1.5 1.0
+					}
+				}
+				## Pomo
+				Transform {
+					translation .1 0 .4
+					children Anchor { 
+						url "ENTRADA.wrl#ViewPoint1"
+      					description "¡Oh, una puerta! Y está muy sola..."
+						children Shape {
+							appearance Appearance {
+								material Material {
+									diffuseColor .31 .22 0
+									specularColor .65 .73 .11
+									ambientIntensity .00333
+									shininess .11
+								}
+							}
+							geometry Sphere {
+								radius .05
+							}
+						}
+					}
+				}
+			]
+		}
+
+		#--- Nivel 2: Visible ---#
+		Group {}
+	]
+}
+
+
+

@@ -1,5 +1,5 @@
 Para la generación de la geometría:
-	- Modelos poligonales (definidos por el propio alumno) 
+	X Modelos poligonales (definidos por el propio alumno) 								// Hoja hacha
 	X Mallas de elevación para la creación de suelo										// Terreno
 	X Formas creadas por extrusión (mediante programas de ayuda originales) 			// Tejado, Pez
 
@@ -11,8 +11,8 @@ Para añadir detalles a los objetos:
 
 Para añadir detalles a la escena:
 	- Utilización de distintas fuentes de luz.
-	- Utilización de fondos, si son necesarios.
-	- Efectos de niebla, si viene al caso.
+	X Utilización de fondos, si son necesarios.											// Fondo degradado
+	/ Efectos de niebla, si viene al caso.
 	X Utilización de interpoladores para incrementar el realismo.						// Nubes
 	X Si se desea se puede añadir sonidos. Para música de fondo utilizar ficheros midi	// Agua1, Agua2
 	  ocupan mucho menos que los wav.
@@ -20,17 +20,17 @@ Para añadir detalles a la escena:
 Para la interacción con el mundo:
 	- Definir distintos puntos de vista, para poder acceder a distintas zonas del mundo	// Avatar, aérea
 	  de forma rápida
-	- Detección de colisiones
-	- Sensibilización del observador y sus acciones para añadir un mayor realismo.		// Objetos
+	X Detección de colisiones															// Excepto armas
+	X Sensibilización del observador y sus acciones para añadir un mayor realismo.		// Objetos
 
 Ampliaciones:
 	X Uso de prototipos (no los de ejemplos suministrados)								// Flores, Arboles, ScriptNadar
 	X Utilización de scripts (no los de ejemplos suministrados)							// Nadar (peces)
-	- Uso de nodos extras de Cortona
+	/ Uso de nodos extras de Cortona
 
 --------------------------------------------
 
-- Añadir más peces
+X Añadir más peces
 - Valla (forma poligonal o extrusion) alrededor del lago 
 X Interpoladores (nubes o pajaros)
 

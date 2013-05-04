@@ -17,9 +17,10 @@ NavigationInfo {
 ## Puntos de vista
 ##---------------------
 DEF ViewPoint1 Viewpoint {
-	position 0 1 -3 
+	position 0 1 -2 
 	orientation	1 0 0 -.0
 }
+
 
 ##---------------------
 ## Sol
@@ -65,53 +66,92 @@ Transform {
 
 
 ##---------------------
-## Puerta
+## Puertas
 ##---------------------
-LOD {
-	range [ 30 ]
-	level [
-		#--- Nivel 1: Visible ---#
-		Transform {
-			rotation 0 1 0 1.57
-			translation 0 1 0
-			children [
-				## Hoja
-				Shape {
-					appearance Appearance {
-						material Material { diffuseColor 0.3 0.2 0.0 }
-					}
-					geometry Box {
-						size .1 1.5 1.0
-					}
-				}
-				## Pomo
-				Transform {
-					translation .1 0 .4
-					children Anchor { 
-						url "ENTRADA.wrl#ViewPoint1"
-      					description "¡Oh, una puerta! Y está muy sola..."
-						children Shape {
-							appearance Appearance {
-								material Material {
-									diffuseColor .31 .22 0
-									specularColor .65 .73 .11
-									ambientIntensity .00333
-									shininess .11
-								}
-							}
-							geometry Sphere {
-								radius .05
+EXTERNPROTO Puerta [
+	field MFString url
+	field SFString description
+] "Puerta.wrl#Puerta"
+
+Transform {
+	translation 0 0 0
+	children [ 
+		DEF FilaPuertas Transform {
+			children [ 
+				DEF PuertaFalsa LOD {
+					range [ 30 ]
+					level [
+						#--- Nivel 1: Visible ---#
+						Anchor { 
+							url "Limbo.wrl#ViewPoint1" 	
+							description "¡Yo! ¡Yo soy la puerta que buscas!" 
+							children Transform {
+								translation 2 1 -2
+								children [ 
+									Puerta {
+										url "Limbo.wrl#ViewPoint1"
+										description "¡Yo! ¡Yo soy la puerta que buscas!"
+									}
+								]
 							}
 						}
-					}
+						#--- Nivel 2: Invisible ---#
+						Group {}
+					]
 				}
+				Transform { translation   4 0  0  children USE PuertaFalsa }
+				Transform { translation   8 0  0  children USE PuertaFalsa }
+				Transform { translation  12 0  0  children USE PuertaFalsa }
+				Transform { translation  16 0  0  children USE PuertaFalsa }
+				Transform { translation  20 0  0  children USE PuertaFalsa }
+				Transform { translation  24 0  0  children USE PuertaFalsa }
+				Transform { translation  28 0  0  children USE PuertaFalsa }
+				Transform { translation  32 0  0  children USE PuertaFalsa }
+				Transform { translation  36 0  0  children USE PuertaFalsa }
+				Transform { translation  -4 0  0  children USE PuertaFalsa }
+				Transform { translation  -8 0  0  children USE PuertaFalsa }
+				Transform { translation -12 0  0  children USE PuertaFalsa }
+				Transform { translation -16 0  0  children USE PuertaFalsa }
+				Transform { translation -20 0  0  children USE PuertaFalsa }
+				Transform { translation -24 0  0  children USE PuertaFalsa }
+				Transform { translation -28 0  0  children USE PuertaFalsa }
+				Transform { translation -32 0  0  children USE PuertaFalsa }
+				Transform { translation -36 0  0  children USE PuertaFalsa }
+				Transform { translation -40 0  0  children USE PuertaFalsa }
 			]
 		}
-
-		#--- Nivel 2: Visible ---#
-		Group {}
 	]
 }
+Transform { translation 0 0  -4  children USE FilaPuertas }
+Transform { translation 0 0  -8  children USE FilaPuertas }
+Transform { translation 0 0 -12  children USE FilaPuertas }
+Transform { translation 0 0 -16  children USE FilaPuertas }
+Transform { translation 0 0 -20  children USE FilaPuertas }
+Transform { translation 0 0 -24  children USE FilaPuertas }
+Transform { translation 0 0 -28  children USE FilaPuertas }
+Transform { translation 0 0 -32  children USE FilaPuertas }
+Transform { translation 0 0 -36  children USE FilaPuertas }
+Transform { translation 0 0   4  children USE FilaPuertas }
+Transform { translation 0 0   8  children USE FilaPuertas }
+Transform { translation 0 0  12  children USE FilaPuertas }
+Transform { translation 0 0  16  children USE FilaPuertas }
+Transform { translation 0 0  20  children USE FilaPuertas }
+Transform { translation 0 0  24  children USE FilaPuertas }
+Transform { translation 0 0  28  children USE FilaPuertas }
+Transform { translation 0 0  32  children USE FilaPuertas }
+Transform { translation 0 0  36  children USE FilaPuertas }
+Transform { translation 0 0  40  children USE FilaPuertas }
+
+Transform {
+	translation 0 1 0
+	children DEF PuertaCorrecta Puerta {
+		url "ENTRADA.wrl#ViewPoint1"
+		description "¡No! ¡Cuidado! Al otro lado... solo hay miedo."
+	}
+}
+
+
+
 
 
 

@@ -1,6 +1,14 @@
 #VRML V2.0 utf8
 
 
+
+##---------------------
+## Escenario inicial
+##---------------------
+Inline { url "Exterior.wrl" }
+Inline { url "Objetos.wrl" }
+
+
 ##---------------------
 ## Avatar
 ##---------------------
@@ -10,6 +18,7 @@ NavigationInfo {
 	visibilityLimit	0.0 
 	speed 3.0
 	type "WALK"
+	#type "FLY"
 }
 
 
@@ -20,7 +29,7 @@ Group {
 	children [
 		Viewpoint {
 			position 11 1 20 	orientation	1 0 0 -.05
-			#position 15 30 10 	orientation 1 0 0 -1.57
+			#position 15 50 10 	orientation 1 0 0 -1.57
 		}
 	]
 }
@@ -41,21 +50,14 @@ DEF BACKGROUND Background {
 ## Sol
 ##---------------------
 DEF SUN PointLight { 
-	location -20 30 25
-	radius 100
+	location 0 30 25
+	radius 200
 	on TRUE
-	ambientIntensity 0
+	ambientIntensity .0
 	attenuation 1 0 0
 	color 1 1 1
 	intensity 1
 }
-
-
-##---------------------
-## Escenario inicial
-##---------------------
-Inline { url "Exterior.wrl" }
-Inline { url "Objetos.wrl" }
 
 
 

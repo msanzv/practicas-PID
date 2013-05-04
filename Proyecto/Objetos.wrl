@@ -31,7 +31,10 @@ Transform {
 							}
 						}
 						geometry Text {
-							string [ "¿Te apetece pescar?" "¿O cortar leña?..." " " "Oh! Tu puntero! ;)"]
+							string [ "¿Te apetece pescar?" 
+									 "¿O cortar leña?" 
+									 " " 
+									 "Oh... Tu puntero!"]
 							fontStyle FontStyle {
 								family "SERIF"
 								style "PLAIN"
@@ -40,7 +43,7 @@ Transform {
 								size 0.12
 								spacing 1.0
 							}
-							length [ 0 0 0 0 ]
+							length [ ]
 							maxExtent 1.0
 						}
 					}
@@ -60,7 +63,7 @@ Transform {
 
 
 ##---------------------
-## Caña
+## Objetos del avatar
 ##---------------------
 DEF Objects Switch {
 	whichChoice 2
@@ -122,34 +125,68 @@ DEF Objects Switch {
 				}	
 				DEF PTransform2 Transform {
 					children Transform {
-						scale .5 .5 .5
-						translation .3 0 -.8
-						rotation 0 1 0 1.57
-						children [
-							Transform {
-								rotation 0 0 1 -.8 
-								children Shape {
-									appearance DEF AppHacha Appearance {
-										material Material { diffuseColor .6 .4 .1 }
-										texture ImageTexture { url "res/texturas/tree_wood2.jpg" }
+						rotation 0 1 0 .0
+						children Transform {
+							scale .5 .5 .5
+							translation .3 0 -0.8
+							rotation 0 1 0 1.57
+							children [
+								Transform {
+									rotation 0 0 1 -.8 
+									children Shape {
+										appearance DEF AppHacha Appearance {
+											material Material { diffuseColor .6 .4 .1 }
+											texture ImageTexture { url "res/texturas/tree_wood2.jpg" }
+										}
+										geometry Cylinder {
+											radius .08
+											height 2
+										}
 									}
-									geometry Cylinder {
-										radius .08
-										height 2
+								},
+								Transform {
+									scale .1 .1 .1
+									rotation 0 0 1 .785
+									translation .55 .45 0
+									children Shape {
+										appearance Appearance {
+											material Material {
+												diffuseColor .65 .65 .65
+												specularColor .92 .91 .89
+												ambientIntensity 0
+												shininess .6
+											}
+										}
+										#geometry Box { size .5 .5 .05 }
+										geometry IndexedFaceSet {
+											coord Coordinate {
+												point [ -2.5  0 -.5  
+														 2.5  0 -.5
+														 2.5  0  .5
+														-2.5  0  .5 
+														-2.5 -1 -.5  
+														 2.5 -1 -.5
+														 2.5 -1  .5
+														-2.5 -1  .5 
+														-4.0 -4   0
+														 4.0 -4   0
+											 	]
+											}
+											coordIndex [ 0 3 2 1 -1
+															2 3 7 6 -1
+															0 1 5 4 -1
+															1 2 6 5 -1
+															0 4 7 3 -1
+															6 7 8 9 -1
+															4 5 9 8 -1
+															5 6 9 -1
+															7 4 8 -1
+											]
+										}
 									}
 								}
-							},
-							Transform {
-								rotation 0 0 1 .785
-								translation .7 .25 0
-								children Shape {
-									appearance Appearance {
-										material Material { diffuseColor 0.5 0.5 0.5 }
-									}
-									geometry Box { size .5 .5 .05 }
-								}
-							}
-						]
+							]
+						}
 					}
 				}
 			]

@@ -36,7 +36,12 @@ Group {
 					translation .1 0 .4
 					children Shape {
 						appearance Appearance {
-							material Material {  diffuseColor 1 1 1 }
+							material Material {
+								diffuseColor .31 .22 0
+								specularColor .65 .73 .11
+								ambientIntensity .00333
+								shininess .11
+							}
 						}
 						geometry Sphere {
 							radius .05

@@ -8,7 +8,7 @@ NavigationInfo {
 	avatarSize [.5 1 0.5]
 	headlight TRUE
 	visibilityLimit	0.0 
-	speed 3.0
+	speed 1.0
 	type [ "WALK" "FLY" ]
 }
 
@@ -145,7 +145,7 @@ Transform { translation 0 0  40  children USE FilaPuertas }
 Transform {
 	translation 0 1 0
 	children DEF PuertaCorrecta Puerta {
-		url "ENTRADA.wrl#ViewPoint1"
+		url "ENTRADA.wrl#ViewPoint2"
 		description "¡No! ¡Cuidado! Al otro lado... solo hay miedo."
 	}
 }

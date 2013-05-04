@@ -222,7 +222,7 @@ Transform { translation 27 0 2.5 rotation 0 1 0 0.0  children DEF GrupoFlores3 I
 Transform {
 	rotation 0 1 0 0.4
 	translation	7.5 3 4.5
-	children Inline { url "CasaExterior.wrl" }
+	children Inline { url "Casa.wrl" }
 }
 
 ##---------------------

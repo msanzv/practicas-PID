@@ -34,17 +34,17 @@ Transform {
 							string [ "¿Te apetece pescar?" 
 									 "¿O cortar leña?" 
 									 " " 
-									 "Oh... Tu puntero!"]
+									 "Oh... ¡Tu puntero!"]
 							fontStyle FontStyle {
 								family "SERIF"
-								style "PLAIN"
+								style "BOLDITALIC"
 								justify "MIDDLE"
 								language "es"
-								size 0.12
+								size 0.09
 								spacing 1.0
 							}
 							length [ ]
-							maxExtent 1.0
+							maxExtent 1.2
 						}
 					}
 				}
@@ -128,7 +128,7 @@ DEF Objects Switch {
 						rotation 0 1 0 .0
 						children Transform {
 							scale .5 .5 .5
-							translation .3 0 -0.8
+							translation .3 0 -0.9
 							rotation 0 1 0 1.57
 							children [
 								#--- Mango

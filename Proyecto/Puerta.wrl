@@ -10,12 +10,12 @@ PROTO Puerta [
 ] {
 	Billboard {
 		children Transform {
-			rotation 0 1 0 -.785
+			rotation 0 1 0 -1.57
 			children [
 				#--- Hoja ---#
 				Shape {
 					appearance Appearance {
-						material Material { diffuseColor 0.3 0.2 0.0 }
+						material Material { diffuseColor 0.15 0.1 0.0 }
 					}
 					geometry Box { size .1 1.5 1.0 }
 				}

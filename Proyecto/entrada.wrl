@@ -16,8 +16,8 @@ NavigationInfo {
 	avatarSize [.5 1 0.5]
 	headlight TRUE
 	visibilityLimit	0.0 
-	speed 3.0
-	type [ "WALK" "FLY" ]
+	speed 1.0
+	type [ "ANY" ]
 }
 
 

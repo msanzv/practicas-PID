@@ -9,7 +9,7 @@ NavigationInfo {
 	headlight TRUE
 	visibilityLimit	0.0 
 	speed 1.0
-	type [ "WALK" "FLY" ]
+	type [ "ANY" ]
 }
 
 
@@ -146,7 +146,7 @@ Transform {
 	translation 0 1 0
 	children DEF PuertaCorrecta Puerta {
 		url "ENTRADA.wrl#ViewPoint2"
-		description "¡No! ¡Cuidado! Al otro lado... solo hay miedo."
+		description "¡No! ¡Cuidado! Al otro lado... solo hay... miedo."
 	}
 }
 

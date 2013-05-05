@@ -34,14 +34,14 @@ Transform {
 							string [ "¿Te apetece pescar?" 
 									 "¿O cortar leña?" 
 									 " " 
-									 "Oh... ¡Tu puntero!"]
+									 "Oh... ¡No me toques!"]
 							fontStyle FontStyle {
 								family "SERIF"
 								style "BOLDITALIC"
 								justify "MIDDLE"
 								language "es"
 								size 0.09
-								spacing 1.0
+								spacing 1.2
 							}
 							length [ ]
 							maxExtent 1.2
@@ -80,22 +80,55 @@ DEF Objects Switch {
 					size 1000 1000 1000
 				}	
 				DEF PTransform1 Transform {
-					children Transform {
+					children DEF Canya Transform {
 						translation 1.0 .2 -3
 						rotation 0 1 0 1.57
 						children [
+							#--- Caña fina
 							Transform {
 								rotation 0 0 1 -.8 
 								children Shape {
-									appearance Appearance {
+									appearance DEF Amarillo Appearance {
 										material Material { diffuseColor 0.5 0.5 0.0 }
 									}
+									geometry Cylinder { radius .03 height 3 }
+								}
+							},
+							#--- Caña gruesa
+							Transform {
+								rotation 0 0 1 -.8 
+								translation	-1.02 -1.01 0
+								children Shape {
+									appearance USE Amarillo
 									geometry Cylinder {
-										radius .05
-										height 3
+										radius .04
+										height 1.5
 									}
 								}
 							},
+							#--- Mango
+							Transform {
+								rotation 0 0 1 -.8 
+								translation	-1.55 -1.53 0
+								children Shape {
+									appearance DEF Negro Appearance {
+										material Material { diffuseColor 0 0 0 }
+									}
+									geometry Cylinder { radius .06 height 0.5 }
+								}
+							},
+							Transform {
+								rotation 0 0 1 -.8 
+								translation	-.5 -.5 0
+								children Shape {
+									appearance USE Negro
+									geometry Cylinder {
+										radius .05
+										height 0.1
+									}
+								}
+							},
+							#--- Sedal
 							Transform {
 								translation 1 0 0
 								children Shape {
@@ -126,7 +159,7 @@ DEF Objects Switch {
 				DEF PTransform2 Transform {
 					children Transform {
 						rotation 0 1 0 .0
-						children Transform {
+						children DEF Hacha Transform {
 							scale .5 .5 .5
 							translation .3 0 -0.9
 							rotation 0 1 0 1.57
@@ -196,6 +229,34 @@ DEF Objects Switch {
 	]
 }
 
+DEF	SwitchCanya Switch {
+	whichChoice	1
+	choice [
+		Group {}
+		Transform {
+			scale .6 .6 .6
+			translation	20.4 .8 11.1
+			children USE Canya
+		}
+	]
+}
+DEF SwitchHacha Switch {
+	whichChoice	1
+	choice [
+		Group {}
+		Transform {
+			rotation 1 0 0 -.006
+			children Transform {
+				scale .6 .6 .6
+				rotation 0 1 0 3.14
+				translation 21.15 .8 9.4
+				children USE Hacha
+			}
+		}
+	]
+}
+
+
 ROUTE PSensor1.position_changed TO PTransform1.set_translation
 ROUTE PSensor1.orientation_changed TO PTransform1.set_rotation
 ROUTE PSensor2.position_changed TO PTransform2.set_translation
@@ -204,19 +265,41 @@ ROUTE PSensor2.orientation_changed TO PTransform2.set_rotation
 DEF SelectObject Script { 
     eventIn SFTime touchTime
     eventOut SFInt32 whichChoice
+	eventOut SFInt32 canyaChoice
+	eventOut SFInt32 hachaChoice
     url "javascript:
-      function initialize() {
-        whichChoice = 0;
-      }
-      function touchTime(value, time) {
-        if(whichChoice == 2) 
-        	whichChoice = 0;
-        else whichChoice++;
-      }"
+		function initialize() {
+			whichChoice = 0;
+			canyaChoice = 1;
+			hachaChoice = 1;
+		}
+		function touchTime(value, time) {
+			if(whichChoice == 2){
+				whichChoice = 0;
+				canyaChoice = 1;
+				hachaChoice = 1;
+			}
+			else whichChoice++;
+
+			if(whichChoice == 1){
+				canyaChoice = 0;
+				hachaChoice = 1;
+			}
+			else if(whichChoice == 2){
+				canyaChoice = 1;
+				hachaChoice = 0;
+			}
+			else{
+				canyaChoice = 1;
+				hachaChoice = 1;
+			}
+		}"
   }
 
 
 ROUTE TSensor.touchTime TO  SelectObject.touchTime
 ROUTE SelectObject.whichChoice TO Objects.whichChoice
+ROUTE SelectObject.canyaChoice TO SwitchCanya.whichChoice
+ROUTE SelectObject.hachaChoice TO SwitchHacha.whichChoice
 
 

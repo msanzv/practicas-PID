@@ -15,7 +15,7 @@ PROTO Puerta [
 				#--- Hoja ---#
 				Shape {
 					appearance Appearance {
-						material Material { diffuseColor 0.15 0.1 0.0 }
+						material Material { diffuseColor 0.3 0.3 0.3 }
 					}
 					geometry Box { size .1 1.5 1.0 }
 				}
@@ -42,9 +42,4 @@ PROTO Puerta [
 		}
 	}
 }
-
-#Puerta {
-	#url "ENTRADA.wrl#ViewPoint1"
-	#description "¡Oh, una puerta! Y está muy sola..."
-#}
 

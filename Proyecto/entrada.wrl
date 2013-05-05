@@ -6,7 +6,6 @@
 ## Escenario inicial
 ##---------------------
 Inline { url "Exterior.wrl" }
-Inline { url "Objetos.wrl" }
 
 
 ##---------------------

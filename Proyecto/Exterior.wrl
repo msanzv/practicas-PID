@@ -2,7 +2,6 @@
 
 
 
-
 ##---------------------
 ## Objetos del avatar (+ cartel)
 ##---------------------
@@ -81,150 +80,6 @@ Shape {
 }
 
 
-
-##---------------------
-## Nubes
-##---------------------
-EXTERNPROTO Nube1 [ field SFVec3f translation ] "Nube.wrl#Nube1"
-EXTERNPROTO Nube2 [ field SFVec3f translation ] "Nube.wrl#Nube2"
-
-DEF GrupoNubes1 Transform {
-	children [
-		Transform { translation   0 0   0  children DEF Nube1 Nube1 { } }
-		Transform { translation  15 0  11  children DEF Nube2 Nube2 { } }		
-	]
-}
-DEF GrupoNubes2 Transform {
-	children [
-		Transform { translation -10 0  15  children USE Nube1 }
-		Transform { translation   5 0 -12  children USE Nube1 }	
-	]
-}
-DEF GrupoNubes3 Transform {
-	children [
-		Transform { translation  10 0  -5  children USE Nube2 }
-		Transform { translation  -5 0   7  children USE Nube1 }	
-	]
-}
-DEF GrupoNubes4 Transform {
-	children [
-		Transform { translation   0 0  -8  children USE Nube2 }
-		Transform { translation -15 0   4  children USE Nube2 }	
-	]
-}
-
-DEF	TSensor1 TimeSensor { loop TRUE  cycleInterval 40 }
-DEF	TSensor2 TimeSensor { loop TRUE  cycleInterval 50 }
-DEF	TSensor3 TimeSensor { loop TRUE  cycleInterval 60 }
-DEF	TSensor4 TimeSensor { loop TRUE  cycleInterval 70 }
-
-
-DEF	PInter1 PositionInterpolator { key [0 1]  keyValue [-30 15 10, 60 15 10] }
-DEF	PInter2 PositionInterpolator { key [0 1]  keyValue [-30 15 10, 60 15 10] }
-DEF	PInter3 PositionInterpolator { key [0 1]  keyValue [-30 15 10, 60 15 10] }
-DEF	PInter4 PositionInterpolator { key [0 1]  keyValue [-30 15 10, 60 15 10] }
-
-ROUTE TSensor1.fraction_changed TO PInter1.set_fraction
-ROUTE PInter1.value_changed TO GrupoNubes1.translation
-ROUTE TSensor2.fraction_changed TO PInter2.set_fraction
-ROUTE PInter2.value_changed TO GrupoNubes2.translation
-ROUTE TSensor3.fraction_changed TO PInter3.set_fraction
-ROUTE PInter3.value_changed TO GrupoNubes3.translation
-ROUTE TSensor4.fraction_changed TO PInter4.set_fraction
-ROUTE PInter4.value_changed TO GrupoNubes4.translation
-
-
-
-##---------------------
-## Arboles
-##---------------------
-EXTERNPROTO Arbol1  [] "Arboles.wrl#Arbol1"
-EXTERNPROTO Arbol2  [] "Arboles.wrl#Arbol2"
-EXTERNPROTO Tronco1 [] "Arboles.wrl#Tronco1"
-EXTERNPROTO Tronco2 [] "Arboles.wrl#Tronco2"
-
-DEF Bosque1 Transform {
-	translation 19 0 1
-	children [
-		Transform { translation 0.0 0.0 0.0  children Arbol1 {} }
-		Transform { translation 0.8 -.1 1.6  children Arbol1 {} }
-		Transform { translation 1.9 0.0 0.7  children Arbol1 {} }
-		Transform { translation 3.6 -.2 2.2  children Arbol1 {} }
-
-		Transform { translation 0.0 0.3 2.7  children Arbol2 {} }
-		Transform { translation 1.1 0.0 0.3  children Arbol2 {} }
-		Transform { translation 2.7 0.2 0.5  children Arbol2 {} }
-		Transform { translation 2.5 0.0 2.5  children Arbol2 {} }
-
-		Transform { translation 1.1 -.6 2.8  children Tronco1 {} }
-		Transform { translation 3.5 -.2 0.4  children Tronco2 {} }
-	]
-}
-
-DEF Bosque2 Transform {
-	translation 3 .5 12
-	children [
-		Transform { translation 0.0 0.2 0.0  children Arbol1 {} }
-		Transform { translation 0.2 0.0 1.3  children Arbol1 {} }
-		Transform { translation -.8 -.3 2.0  children Arbol1 {} }
-		Transform { translation 0.1 0.2 3.2  children Arbol1 {} }
-		Transform { translation -.3 -.2 4.9  children Arbol1 {} }
-		Transform { translation 1.9 0.3 0.5  children Arbol2 {} }
-		Transform { translation 2.9 0.4 1.9  children Arbol2 {} }
-
-		Transform { translation 1.4 -.1 1.3  children Tronco2 {} }
-	]
-}
-
-
-##---------------------
-## Flores
-##---------------------
-EXTERNPROTO Flor [
-	field SFFloat altura 
-	field SFColor color_centro
-	field SFColor color_petalos 
-	field SFRotation rotationX 
-	field SFRotation rotationY 
-] "Flores.wrl#Flor"
-
-Transform {
-	rotation 0 1 0 .5
-	translation 9 2.15 6
-	children [
-		Transform{ translation 0.0 0.0 0.0  children Flor{ rotationY 0 1 0 -.3  color_petalos .3 .6 .9 } }
-		Transform{ translation 0.4 0.0 0.2  children Flor{ rotationY 0 1 0 0.4  color_petalos .9 .6 .3 } }
-		Transform{ translation -.2 0.0 0.4  children Flor{ rotationY 0 1 0 0.6  color_petalos .9 .9 .0 } }
-		Transform{ translation 0.1 0.0 -.3  children Flor{ rotationY 0 1 0 -.1  color_petalos .9 .0 .9 } }
-		Transform{ translation 0.2 0.0 0.6  children Flor{ rotationY 0 1 0 0.2  color_petalos .9 .0 .0 } }
-		Transform{ translation 0.6 0.0 -.1  children Flor{ rotationY 0 1 0 0.1  color_petalos .9 .5 .0 } }
-		Transform{ translation 0.8 0.0 0.3  children Flor{ rotationY 0 1 0 -.2  color_petalos .3 .9 .3 } }
-		Transform{ translation 1.0 0.0 -.2  children Flor{ rotationY 0 1 0 0.3  color_petalos .3 .3 .9 } }
-	]
-}
-
-
-##---------------------
-## Grupos de flores
-##---------------------
-Transform { translation 10 -.1 14   rotation 0 1 0 0.0  children DEF GrupoFlores1 Inline { url "Flores.wrl" } }
-Transform { translation  9 -.1 14.9 rotation 0 1 0 0.5  children DEF GrupoFlores2 Inline { url "Flores.wrl" } }
-
-Transform { translation 27   0  2.5 rotation 0 1 0 -.9  children DEF GrupoFlores3 Inline { url "Flores.wrl" } }
-Transform { translation 25.6 0  2.3 rotation 0 1 0 -.6  children DEF GrupoFlores4 Inline { url "Flores.wrl" } }
-
-
-
-##---------------------
-## Casa
-##---------------------
-Transform {
-	rotation 0 1 0 0.4
-	translation	7.5 3 4.5
-	children Inline { url "Casa.wrl" }
-}
-
-
 ##---------------------
 ## Sonidos
 ##---------------------
@@ -258,14 +113,16 @@ Transform {
 		}
 	]
 }
-# Sonido al andar por el agua
+## Sonido al andar por el agua
 ROUTE PSensor.enterTime TO WaterSplash.set_startTime
 ROUTE PSensor.exitTime  TO WaterSplash.set_startTime
 
 
 ##---------------------
-## Lago grande
+## Lago grande con peces
 ##---------------------
+EXTERNPROTO Pez [] "protos/Pez.wrl#Pez"
+
 Transform {
 	translation	22 -0.75 12.5
 	children [
@@ -282,7 +139,7 @@ Transform {
 		Transform {
 			translation .5 0 .5
 			children DEF Pez1 Transform {
-				children Transform { translation 0 .5 0  children Inline { url "Pez.wrl" } }	
+				children Transform { translation 0 .5 0  children Pez {} }	
 			}
 		}
 		Transform {
@@ -290,8 +147,7 @@ Transform {
 			rotation 0 1 0 0.4
 			translation -2 0 2
 			children DEF Pez2 Transform {
-				children Transform { translation 0 .5 0  children Inline { url "Pez.wrl" }
-				}		
+				children Transform { translation 0 .5 0  children Pez {} }		
 			}
 		}
 		Transform {
@@ -299,8 +155,7 @@ Transform {
 			rotation 0 1 0 1.2
 			translation 1 0 3
 			children DEF Pez3 Transform {
-				children Transform { translation 0 .5 0  children Inline { url "Pez.wrl" }
-				}		
+				children Transform { translation 0 .5 0  children Pez {} }		
 			}
 		}
 		Transform {
@@ -308,17 +163,20 @@ Transform {
 			rotation 0 1 0 1.8
 			translation -3 0 4
 			children DEF Pez4 Transform {
-				children Transform { translation 0 .5 0  children Inline { url "Pez.wrl" }
-				}		
+				children Transform { translation 0 .5 0  children Pez {} }		
 			}
 		}
 	]
 }
-# Sonido al andar por el agua
+## Sonido al andar por el agua
 ROUTE PSensor2.enterTime TO WaterWalking.set_startTime
 ROUTE PSensor2.exitTime  TO WaterWalking.set_stopTime
 
-#Timer para el movimiento de los peces
+
+##---------------------
+## Movimiento de los peces
+##---------------------
+## Timer para el movimiento de los peces
 DEF NadarSensor TimeSensor {
 	enabled TRUE
 	cycleInterval 100.0
@@ -327,7 +185,7 @@ DEF NadarSensor TimeSensor {
 	stopTime  0.0
 }
 
-#Script para el movimiento de los peces
+## Script para el movimiento de los peces
 PROTO NadarScript [
 	field SFFloat velocidad 0.005 
 	field SFFloat distancia 0.9
@@ -425,5 +283,149 @@ ROUTE NadarPez3.rotation_changed TO Pez3.set_rotation
 ROUTE NadarSensor.fraction_changed TO NadarPez4.set_fraction
 ROUTE NadarPez4.position_changed TO Pez4.set_translation
 ROUTE NadarPez4.rotation_changed TO Pez4.set_rotation
+
+
+
+##---------------------
+## Nubes
+##---------------------
+EXTERNPROTO Nube1 [ field SFVec3f translation ] "protos/Nubes.wrl#Nube1"
+EXTERNPROTO Nube2 [ field SFVec3f translation ] "protos/Nubes.wrl#Nube2"
+
+DEF GrupoNubes1 Transform {
+	children [
+		Transform { translation   0 0   0  children Nube1 { } }
+		Transform { translation  15 0  11  children Nube2 { } }		
+	]
+}
+DEF GrupoNubes2 Transform {
+	children [
+		Transform { translation -10 0  15  children Nube1 { } }
+		Transform { translation   5 0 -12  children Nube1 { } }	
+	]
+}
+DEF GrupoNubes3 Transform {
+	children [
+		Transform { translation  10 0  -5  children Nube2 { } }
+		Transform { translation  -5 0   7  children Nube1 { } }	
+	]
+}
+DEF GrupoNubes4 Transform {
+	children [
+		Transform { translation   0 0  -8  children Nube2 { } }
+		Transform { translation -15 0   4  children Nube2 { } }	
+	]
+}
+
+DEF	TSensor1 TimeSensor { loop TRUE  cycleInterval 40 }
+DEF	TSensor2 TimeSensor { loop TRUE  cycleInterval 50 }
+DEF	TSensor3 TimeSensor { loop TRUE  cycleInterval 60 }
+DEF	TSensor4 TimeSensor { loop TRUE  cycleInterval 70 }
+
+DEF	PInter1 PositionInterpolator { key [0 1]  keyValue [-30 15 10, 60 15 10] }
+DEF	PInter2 PositionInterpolator { key [0 1]  keyValue [-30 15 10, 60 15 10] }
+DEF	PInter3 PositionInterpolator { key [0 1]  keyValue [-30 15 10, 60 15 10] }
+DEF	PInter4 PositionInterpolator { key [0 1]  keyValue [-30 15 10, 60 15 10] }
+
+ROUTE TSensor1.fraction_changed TO PInter1.set_fraction
+ROUTE PInter1.value_changed TO GrupoNubes1.translation
+ROUTE TSensor2.fraction_changed TO PInter2.set_fraction
+ROUTE PInter2.value_changed TO GrupoNubes2.translation
+ROUTE TSensor3.fraction_changed TO PInter3.set_fraction
+ROUTE PInter3.value_changed TO GrupoNubes3.translation
+ROUTE TSensor4.fraction_changed TO PInter4.set_fraction
+ROUTE PInter4.value_changed TO GrupoNubes4.translation
+
+
+
+##---------------------
+## Arboles
+##---------------------
+EXTERNPROTO Arbol1  [] "protos/Arboles.wrl#Arbol1"
+EXTERNPROTO Arbol2  [] "protos/Arboles.wrl#Arbol2"
+EXTERNPROTO Tronco1 [] "protos/Arboles.wrl#Tronco1"
+EXTERNPROTO Tronco2 [] "protos/Arboles.wrl#Tronco2"
+
+DEF Bosque1 Transform {
+	translation 19 0 1
+	children [
+		Transform { translation 0.0 0.0 0.0  children Arbol1 {} }
+		Transform { translation 0.8 -.1 1.6  children Arbol1 {} }
+		Transform { translation 1.9 0.0 0.7  children Arbol1 {} }
+		Transform { translation 3.6 -.2 2.2  children Arbol1 {} }
+
+		Transform { translation 0.0 0.3 2.7  children Arbol2 {} }
+		Transform { translation 1.1 0.0 0.3  children Arbol2 {} }
+		Transform { translation 2.7 0.2 0.5  children Arbol2 {} }
+		Transform { translation 2.5 0.0 2.5  children Arbol2 {} }
+
+		Transform { translation 1.1 -.6 2.8  children Tronco1 {} }
+		Transform { translation 3.5 -.2 0.4  children Tronco2 {} }
+	]
+}
+
+DEF Bosque2 Transform {
+	translation 3 .5 12
+	children [
+		Transform { translation 0.0 0.2 0.0  children Arbol1 {} }
+		Transform { translation 0.2 0.0 1.3  children Arbol1 {} }
+		Transform { translation -.8 -.3 2.0  children Arbol1 {} }
+		Transform { translation 0.1 0.2 3.2  children Arbol1 {} }
+		Transform { translation -.3 -.2 4.9  children Arbol1 {} }
+		Transform { translation 1.9 0.3 0.5  children Arbol2 {} }
+		Transform { translation 2.9 0.4 1.9  children Arbol2 {} }
+
+		Transform { translation 1.4 -.1 1.3  children Tronco2 {} }
+	]
+}
+
+
+##---------------------
+## Flores
+##---------------------
+EXTERNPROTO Flor [
+	field SFFloat altura 
+	field SFColor color_centro
+	field SFColor color_petalos 
+	field SFRotation rotationX 
+	field SFRotation rotationY 
+] "protos/Flores.wrl#Flor"
+
+Transform {
+	rotation 0 1 0 .5
+	translation 9 2.15 6
+	children [
+		Transform{ translation 0.0 0.0 0.0  children Flor{ rotationY 0 1 0 -.3  color_petalos .3 .6 .9 } }
+		Transform{ translation 0.4 0.0 0.2  children Flor{ rotationY 0 1 0 0.4  color_petalos .9 .6 .3 } }
+		Transform{ translation -.2 0.0 0.4  children Flor{ rotationY 0 1 0 0.6  color_petalos .9 .9 .0 } }
+		Transform{ translation 0.1 0.0 -.3  children Flor{ rotationY 0 1 0 -.1  color_petalos .9 .0 .9 } }
+		Transform{ translation 0.2 0.0 0.6  children Flor{ rotationY 0 1 0 0.2  color_petalos .9 .0 .0 } }
+		Transform{ translation 0.6 0.0 -.1  children Flor{ rotationY 0 1 0 0.1  color_petalos .9 .5 .0 } }
+		Transform{ translation 0.8 0.0 0.3  children Flor{ rotationY 0 1 0 -.2  color_petalos .3 .9 .3 } }
+		Transform{ translation 1.0 0.0 -.2  children Flor{ rotationY 0 1 0 0.3  color_petalos .3 .3 .9 } }
+	]
+}
+
+
+##---------------------
+## Grupos de flores
+##---------------------
+Transform { translation 10 -.1 14   rotation 0 1 0 0.0  children DEF GrupoFlores1 Inline { url "protos/Flores.wrl" } }
+Transform { translation  9 -.1 14.9 rotation 0 1 0 0.5  children DEF GrupoFlores2 Inline { url "protos/Flores.wrl" } }
+
+Transform { translation 27   0  2.5 rotation 0 1 0 -.9  children DEF GrupoFlores3 Inline { url "protos/Flores.wrl" } }
+Transform { translation 25.6 0  2.3 rotation 0 1 0 -.6  children DEF GrupoFlores4 Inline { url "protos/Flores.wrl" } }
+
+
+
+##---------------------
+## Casa
+##---------------------
+Transform {
+	rotation 0 1 0 0.4
+	translation	7.5 3 4.5
+	children Inline { url "Casa.wrl" }
+}
+
 
 

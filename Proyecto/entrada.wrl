@@ -3,7 +3,7 @@
 
 
 ##---------------------
-## Escenario inicial
+## Escena inicial
 ##---------------------
 Inline { url "Exterior.wrl" }
 
@@ -41,7 +41,7 @@ DEF BACKGROUND Background {
     skyAngle 1.6 
     groundColor [ 0 0 0, 0 .5 0 ] 
     groundAngle [ 1.50 ] 
-  } 
+} 
 
 
 ##---------------------

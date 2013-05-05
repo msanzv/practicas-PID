@@ -1,0 +1,44 @@
+#VRML V2.0 utf8
+
+
+##---------------------
+## Definiciones
+##---------------------
+PROTO Nube1 [
+	field SFVec3f translation 0 0 0
+] {
+	Transform {
+		translation IS translation
+		children [
+			DEF Disco1 Shape {
+				appearance DEF AppNube1 Appearance {
+					material Material { diffuseColor 1 1 1 }
+				}
+				geometry Cylinder { radius 1.0  height 0.2 }
+			}
+			Transform { scale .7 1 .7  translation -1.1 0.0 0.0  children USE Disco1 }
+			Transform { scale .5 1 .5  translation -1.8 0.0 0.0  children USE Disco1 }
+			Transform { scale .8 1 .8  translation  1.1 0.0 0.0  children USE Disco1 }
+		]
+	}
+}
+
+PROTO Nube2 [
+	field SFVec3f translation 0 0 0
+] {
+	Transform {
+		scale 1.6 1 .8
+		translation IS translation
+		children [
+			DEF Disco2 Shape {
+				appearance DEF AppNube2 Appearance {
+					material Material { diffuseColor 1 1 1 }
+				}
+				geometry Cylinder { radius 1.0  height 0.2 }
+			}
+			Transform { scale 1 1 1  translation  .8 0 1  children USE Disco2 }
+			Transform { scale 1 1 1  translation -.7 0 1  children USE Disco2 }
+		]
+	}
+}
+
